@@ -1,25 +1,6 @@
-<svg class="svg-defs" aria-hidden="true" focusable="false">
+{{> logo-defs}}
+  <svg class="svg-defs" aria-hidden="true" focusable="false">
     <defs>
-      <!-- Pincel seco: vetas horizontales + bordes irregulares -->
-      <filter id="brush-dry" x="-4%" y="-40%" width="108%" height="180%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.005 0.38" numOctaves="2" seed="11" result="streaks"/>
-        <feColorMatrix in="streaks" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.3 0 0 0 2.05" result="dryMask"/>
-        <feComposite in="SourceGraphic" in2="dryMask" operator="in" result="dry"/>
-        <feTurbulence type="turbulence" baseFrequency="0.03 0.22" numOctaves="2" seed="4" result="edge"/>
-        <feDisplacementMap in="dry" in2="edge" scale="5" xChannelSelector="R" yChannelSelector="G"/>
-      </filter>
-      <symbol id="brush" viewBox="0 0 300 34">
-        <g filter="url(#brush-dry)" fill="currentColor">
-          <path d="M4 15C40 5 110 3 170 4c50 1 92 2 127 1 2 3 1.4 6-1.8 8-40 4-90 9-145 12-50 3-100 6-141 6-7-1-8.6-10-5.2-16z"/>
-          <path d="M18 30.4c52-2 122-5 182-9.4 40-2.6 70-4 94-4.8l-.6 2.2c-33 2-73 4.6-113 7.6-60 4.2-118 6.6-162 7z" opacity=".65"/>
-          <path d="M30 4.4C90 2 170 1.2 260 2.4l-.4 1.4C170 3 95 3.6 30 6z" opacity=".5"/>
-        </g>
-      </symbol>
-      <symbol id="mark-award" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1"/>
-        <circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width=".6"/>
-        <circle cx="12" cy="12" r="2.2" fill="currentColor"/>
-      </symbol>
       <symbol id="arrow" viewBox="0 0 24 24">
         <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.2"/>
       </symbol>
@@ -27,8 +8,5 @@
   </svg>
 
   <div class="curtain curtain--{{theme}}" data-curtain aria-hidden="true">
-    <span class="logo">
-      <svg class="logo__brush" viewBox="0 0 300 34"><use href="#brush"/></svg>
-      <span class="logo__word">NOI</span>
-    </span>
+    <svg class="noi-logo" viewBox="114 82 212 106" aria-hidden="true"><use class="noi-logo__brush" href="#noi-brush"/><use href="#noi-n"/><use href="#noi-o"/><use href="#noi-i"/></svg>
   </div>

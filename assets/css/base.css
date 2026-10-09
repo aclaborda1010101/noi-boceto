@@ -31,6 +31,7 @@
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-cut: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-fade: cubic-bezier(0.45, 0, 0.55, 1);
   --dur-fast: 200ms;
   --dur: 650ms;
   --dur-slow: 1300ms;
@@ -122,33 +123,34 @@ ul, ol { padding: 0; list-style: none; }
   font-weight: 400;
 }
 
-/* ---------- Logo (pincelada + NOI + italiano en madrid) ---------- */
-.logo {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  color: currentColor;
-  line-height: 1;
+/* ---------- Logo oficial NOI (SVG vectorial) ----------
+   Piezas: brochazo, N, O, I y lema. Entrada: letras una a una → brochazo pintándose → lema. */
+.noi-logo { display: block; width: 100%; height: auto; fill: currentColor; overflow: visible; }
+.noi-logo use { transform-box: fill-box; transform-origin: 50% 50%; }
+.noi-logo--xl { display: block; width: clamp(15rem, 9rem + 17vw, 26rem); margin: 0; }
+.header__logo { justify-self: center; display: block; width: 5.4rem; transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out); }
+
+.js [data-logo-animate] .noi-logo__l,
+.js [data-logo-animate] .noi-logo__tag { opacity: 0; }
+.js [data-logo-animate] .noi-logo__brush { clip-path: inset(0 100% 0 0); }
+.js [data-logo-animate].is-playing .noi-logo__l { animation: logoLetter 1500ms var(--ease-out) both; }
+.js [data-logo-animate].is-playing .noi-logo__l--2 { animation-delay: 240ms; }
+.js [data-logo-animate].is-playing .noi-logo__l--3 { animation-delay: 480ms; }
+.js [data-logo-animate].is-playing .noi-logo__brush { animation: logoBrush 1900ms var(--ease-fade) 1000ms both; }
+.js [data-logo-animate].is-playing .noi-logo__tag { animation: logoTag 1500ms var(--ease-out) 2300ms both; }
+.js [data-logo-animate].is-done .noi-logo__l,
+.js [data-logo-animate].is-done .noi-logo__tag { opacity: 1; }
+.js [data-logo-animate].is-done .noi-logo__brush { clip-path: inset(0); }
+.js [data-logo-animate].is-repaint .noi-logo__brush { animation: logoRepaint 1700ms var(--ease-fade) both; }
+@keyframes logoLetter { from { opacity: 0; transform: translateY(12%); filter: blur(5px); } to { opacity: 1; transform: none; filter: blur(0); } }
+@keyframes logoBrush { from { clip-path: inset(0 100% 0 0); opacity: 0.35; } 35% { opacity: 1; } to { clip-path: inset(0 -2% 0 0); opacity: 1; } }
+@keyframes logoTag { from { opacity: 0; transform: translateY(35%); } to { opacity: 1; transform: none; } }
+@keyframes logoRepaint {
+  0% { clip-path: inset(0 0 0 0); }
+  40% { clip-path: inset(0 0 0 100%); }
+  41% { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 -2% 0 0); }
 }
-.logo__brush { width: 100%; height: auto; aspect-ratio: 300 / 34; overflow: visible; }
-.logo__word {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  letter-spacing: 0.62em;
-  margin-right: -0.62em; /* compensa el tracking final para centrar */
-}
-.logo__tag {
-  font-family: var(--font-serif);
-  letter-spacing: 0.34em;
-  margin-right: -0.34em;
-  font-weight: 400;
-}
-.logo--sm { width: 5.6rem; gap: 0.18rem; }
-.logo--sm .logo__word { font-size: 1.45rem; }
-.logo--sm .logo__tag { display: none; }
-.logo--xl { width: clamp(15rem, 10rem + 18vw, 27rem); gap: clamp(0.5rem, 0.3rem + 0.6vw, 1rem); }
-.logo--xl .logo__word { font-size: clamp(3.6rem, 2.2rem + 5vw, 7rem); }
-.logo--xl .logo__tag { font-size: clamp(0.85rem, 0.75rem + 0.35vw, 1.1rem); }
 
 /* ---------- Botones ---------- */
 .btn {
@@ -225,7 +227,6 @@ ul, ol { padding: 0; list-style: none; }
 }
 .header.is-solid { background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(10px); color: var(--fg); }
 .header.is-solid::after { transform: scaleX(1); }
-.header__logo { justify-self: center; transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out); }
 .header--home:not(.is-solid) .header__logo { opacity: 0; transform: translateY(-0.5rem); pointer-events: none; }
 .header__right { justify-self: end; display: flex; align-items: center; gap: 1.6rem; }
 .header__tel { display: none; }
@@ -263,9 +264,9 @@ ul, ol { padding: 0; list-style: none; }
   color: var(--crema);
   clip-path: inset(0 0 100% 0);
   visibility: hidden;
-  transition: clip-path 900ms var(--ease-cut), visibility 0s linear 900ms;
+  transition: clip-path 1000ms var(--ease-fade), visibility 0s linear 1000ms;
 }
-.is-menu-open .menu { clip-path: inset(0); visibility: visible; transition: clip-path 900ms var(--ease-cut), visibility 0s; }
+.is-menu-open .menu { clip-path: inset(0); visibility: visible; transition: clip-path 1000ms var(--ease-fade), visibility 0s; }
 .is-menu-open .header { background: transparent; color: var(--crema); backdrop-filter: none; }
 .is-menu-open .header::after { transform: scaleX(0); }
 .is-menu-open .header__logo { opacity: 1; transform: none; pointer-events: auto; }
@@ -304,10 +305,11 @@ ul, ol { padding: 0; list-style: none; }
 .menu__media { display: none; position: relative; overflow: hidden; }
 .menu__media img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  clip-path: inset(0 0 0 100%);
-  transition: clip-path 1000ms var(--ease-cut);
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 1200ms var(--ease-fade), transform 2400ms var(--ease-out);
 }
-.menu__media img.is-active { clip-path: inset(0); }
+.menu__media img.is-active { opacity: 1; transform: scale(1); }
 @media (min-width: 900px) {
   .menu { grid-template-columns: 1.15fr 1fr; }
   .menu__media { display: block; }
@@ -325,59 +327,28 @@ ul, ol { padding: 0; list-style: none; }
   color: var(--crema);
   clip-path: inset(100% 0 0 0);
 }
-.curtain .logo { width: 8rem; opacity: 0; transition: opacity 400ms var(--ease-out); }
-.curtain .logo__word { font-size: 2rem; }
-.curtain .logo__tag { display: none; }
-.curtain.is-covering { clip-path: inset(0); transition: clip-path 800ms var(--ease-cut); pointer-events: auto; }
-.curtain.is-covering .logo { opacity: 1; transition-delay: 350ms; }
+.curtain .noi-logo { width: 8rem; opacity: 0; transform: translateY(0.6rem); transition: opacity 500ms var(--ease-out), transform 700ms var(--ease-out); }
+.curtain.is-covering { clip-path: inset(0); transition: clip-path 900ms var(--ease-fade); pointer-events: auto; }
+.curtain.is-covering .noi-logo { opacity: 1; transform: none; transition-delay: 380ms; }
 .js-curtain-in .curtain { clip-path: inset(0); }
-.js-curtain-in .curtain .logo { opacity: 1; }
-.curtain.is-leaving { clip-path: inset(0 0 100% 0); transition: clip-path 900ms var(--ease-cut) 120ms; }
-.curtain.is-leaving .logo { opacity: 0; }
+.js-curtain-in .curtain .noi-logo { opacity: 1; transform: none; }
+.curtain.is-leaving { clip-path: inset(0 0 100% 0); transition: clip-path 1100ms var(--ease-fade) 150ms; }
+.curtain.is-leaving .noi-logo { opacity: 0; transform: translateY(-0.6rem); }
 .curtain--verde { --curtain-bg: var(--verde-scuro); }
 .curtain--rosso { --curtain-bg: var(--rosso); }
 
-/* ---------- Loader (solo primera visita) ---------- */
-.loader {
-  position: fixed;
-  inset: 0;
-  z-index: 110;
-  display: none;
-  place-items: center;
-  color: var(--crema);
-}
-.js-loader .loader { display: grid; }
-.loader__half {
-  position: absolute; left: 0; right: 0; height: 50.5%;
-  background: var(--oxblood);
-  transition: transform 1200ms var(--ease-cut);
-}
-.loader__half--top { top: 0; }
-.loader__half--bottom { bottom: 0; }
-.loader .logo { position: relative; z-index: 1; }
-.loader .logo__brush { clip-path: inset(0 100% 0 0); transition: clip-path 1100ms var(--ease-cut) 200ms; }
-.loader .logo__word, .loader .logo__tag { opacity: 0; transform: translateY(0.6rem); transition: opacity 900ms var(--ease-out), transform 900ms var(--ease-out); }
-.loader .logo__word { transition-delay: 700ms; }
-.loader .logo__tag { transition-delay: 950ms; }
-.loader.is-drawn .logo__brush { clip-path: inset(0); }
-.loader.is-drawn .logo__word, .loader.is-drawn .logo__tag { opacity: 1; transform: none; }
-.loader.is-open .logo { opacity: 0; transition: opacity 400ms var(--ease-out); }
-.loader.is-open .loader__half--top { transform: translateY(-100%); }
-.loader.is-open .loader__half--bottom { transform: translateY(100%); }
-.loader.is-done { display: none; }
-
 /* ---------- Revelados al hacer scroll ---------- */
-.js .reveal { opacity: 0; transform: translateY(1.6rem); transition: opacity 1100ms var(--ease-out), transform 1100ms var(--ease-out); }
+.js .reveal { opacity: 0; transform: translateY(1.2rem); transition: opacity 1300ms var(--ease-out), transform 1300ms var(--ease-out); }
 .js .reveal.is-in { opacity: 1; transform: none; }
 .js .reveal[data-delay="1"] { transition-delay: 120ms; }
 .js .reveal[data-delay="2"] { transition-delay: 240ms; }
 .js .reveal[data-delay="3"] { transition-delay: 360ms; }
 /* El recorte va en el hijo: IntersectionObserver ignora elementos con clip-path cerrado */
-.js .reveal-img > * { clip-path: inset(100% 0 0 0); transition: clip-path 1400ms var(--ease-cut); }
+.js .reveal-img > * { clip-path: inset(100% 0 0 0); transition: clip-path 1600ms var(--ease-fade); }
 .js .reveal-img--side > * { clip-path: inset(0 100% 0 0); }
 .js .reveal-img--center > * { clip-path: inset(0 50% 0 50%); }
 .js .reveal-img.is-in > * { clip-path: inset(0); }
-.js .reveal-img img { transform: scale(1.18); transition: transform 2000ms var(--ease-out); }
+.js .reveal-img img { transform: scale(1.12); transition: transform 2400ms var(--ease-out); }
 .js .reveal-img.is-in img { transform: scale(1); }
 .reveal-img > picture { display: block; height: 100%; }
 
@@ -392,9 +363,8 @@ ul, ol { padding: 0; list-style: none; }
   color: var(--ink);
   overflow: hidden;
 }
-.reserve-modal[open] { display: grid; grid-template-rows: auto auto 1fr auto; animation: modalIn 700ms var(--ease-cut) both; }
-.reserve-modal::backdrop { background: rgb(28 19 17 / 72%); backdrop-filter: blur(4px); }
-@keyframes modalIn { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+.reserve-modal[open] { display: grid; grid-template-rows: auto auto 1fr auto; animation: sheetIn 800ms var(--ease-out) both; }
+.reserve-modal::backdrop { background: rgb(28 19 17 / 72%); backdrop-filter: blur(4px); animation: fadeIn 600ms var(--ease-out) both; }
 .reserve-modal__head {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding: 1.1rem 1.4rem;
@@ -436,9 +406,7 @@ ul, ol { padding: 0; list-style: none; }
   gap: 2.2rem;
   text-align: center;
 }
-.footer .logo { width: 12rem; gap: 0.5rem; }
-.footer .logo__word { font-size: 3.4rem; }
-.footer .logo__tag { font-size: 0.95rem; }
+.footer__logo { display: block; width: 13rem; }
 .footer__contact, .footer__links {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 1.6rem;
   font-style: normal;
@@ -464,6 +432,41 @@ ul, ol { padding: 0; list-style: none; }
   text-transform: uppercase;
   opacity: 0.75;
 }
+
+/* ---------- Hoja a pantalla completa (carta, menú degustación) ---------- */
+.sheet {
+  width: min(100% - 1.5rem, 1100px);
+  max-width: none;
+  height: min(100% - 1.5rem, 920px);
+  max-height: none;
+  padding: 0;
+  border: 0;
+  background: var(--marmo);
+  color: var(--ink);
+  overflow: hidden;
+}
+.sheet[open] { display: grid; grid-template-rows: auto 1fr; animation: sheetIn 800ms var(--ease-out) both; }
+.sheet::backdrop { background: rgb(20 8 8 / 70%); backdrop-filter: blur(6px); animation: fadeIn 600ms var(--ease-out) both; }
+@keyframes sheetIn { from { opacity: 0; transform: translateY(1.5rem) scale(0.985); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.sheet__head {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  padding: 0.9rem 1.4rem;
+  border-bottom: 1px solid rgb(28 19 17 / 14%);
+}
+.sheet__close { width: 2.6rem; height: 2.6rem; display: grid; place-items: center; font-size: 1.7rem; line-height: 1; }
+.sheet__body { overflow-y: auto; overscroll-behavior: contain; }
+
+/* ---------- Barra superior mínima (páginas de la propuesta sencilla) ---------- */
+.topbar {
+  position: fixed; inset: 0 0 auto; z-index: 30;
+  display: flex; justify-content: space-between; align-items: center;
+  height: var(--header-h);
+  padding-inline: var(--gutter);
+  color: var(--crema);
+}
+.topbar__back { display: inline-flex; align-items: center; gap: 0.9rem; }
+.topbar__back .noi-logo { width: 4.8rem; }
 
 /* ---------- Selector de propuestas (solo para presentar el boceto) ---------- */
 .switcher {

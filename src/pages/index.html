@@ -1,51 +1,36 @@
 <!--meta {
   "title": "NOI — Italiano en Madrid",
-  "description": "NOI, cocina italiana del chef Gianni Pinto en Recoletos 6, Madrid. NOI Ristorante, la experiencia gastronómica, y NOI Bar e Cucina, la cocina de siempre para compartir. Guía Michelin 2026 · Guía Repsol 2026.",
+  "description": "NOI, cocina italiana del chef Gianni Pinto en Recoletos 6, Madrid. NOI Ristorante, la experiencia gastronómica, y NOI Bar e Cucina, la cocina de siempre para compartir. Guía Guía Michelin 2026 · Guía Repsol 2026.",
   "ogImage": "noi-web-03",
   "themeColor": "#3a0b0e",
   "theme": "home",
   "sala": ""
 } -->
 <!doctype html>
-<html lang="es" data-loader>
+<html lang="es">
 <head>
   {{> head}}
-  <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="stylesheet" href="assets/css/home.css?v={{v}}">
 </head>
 <body class="page-home" data-version="sencilla">
   {{> defs}}
-
-  <div class="loader" data-loader aria-hidden="true">
-    <div class="loader__half loader__half--top"></div>
-    <div class="loader__half loader__half--bottom"></div>
-    <span class="logo logo--xl">
-      <svg class="logo__brush" viewBox="0 0 300 34"><use href="#brush"/></svg>
-      <span class="logo__word">NOI</span>
-      <span class="logo__tag">italiano en madrid</span>
-    </span>
-  </div>
 
   <main class="home" id="contenido" data-home>
     <!-- Fondo: las dos salas, una foto corta a la siguiente -->
     <div class="slides home__stage" data-stage data-interval="5600" aria-hidden="true">
       {{img noi-web-03 | | 100vw | class="is-active" data-set="verde" data-caption="Sala verde — NOI Ristorante" loading="eager" fetchpriority="high"}}
       {{img noi-web-05 | | 100vw | data-set="rosso" data-caption="La barra — NOI Bar e Cucina" loading="eager"}}
-      {{img noi-web-04 | | 100vw | data-set="verde" data-caption="Sala verde — NOI Ristorante"}}
+      {{img noi-oct26-01 | | 100vw | data-set="verde" data-caption="La mesa — NOI Ristorante"}}
       {{img noi-web-08 | | 100vw | data-set="rosso" data-caption="Sala roja — NOI Bar e Cucina"}}
-      {{img noi-oct26-17 | | 100vw | data-set="verde" data-caption="Sala verde — NOI Ristorante"}}
-      {{img noi-web-07 | | 100vw | data-set="rosso" data-caption="La barra — NOI Bar e Cucina"}}
-      {{img noi-oct26-01 | | 100vw | data-set="verde" data-caption="Sala verde — NOI Ristorante"}}
+      {{img noi-oct26-17 | | 100vw | data-set="verde" data-caption="La sala — NOI Ristorante"}}
+      {{img noi-oct26-12 | | 100vw | data-set="rosso" data-caption="Sala roja — NOI Bar e Cucina"}}
+      {{img noi-web-15 | | 100vw | data-set="verde" data-caption="Sala verde — NOI Ristorante"}}
       {{img noi-oct26-20 | | 100vw | data-set="rosso" data-caption="La bodega — NOI Bar e Cucina"}}
     </div>
     <div class="home__tint" aria-hidden="true"></div>
 
     <div class="home__inner">
-      <h1 class="logo logo--xl home__logo">
-        <svg class="logo__brush" viewBox="0 0 300 34" aria-hidden="true"><use href="#brush"/></svg>
-        <span class="logo__word">NOI</span>
-        <span class="logo__tag">italiano en madrid</span>
-        <span class="sr-only">NOI, italiano en Madrid</span>
-      </h1>
+      <h1 class="home__logo noi-logo--xl noi-logo--interactive" data-logo-animate="ready"><svg class="noi-logo" viewBox="114 82 212 135" role="img" aria-label="NOI · italiano en madrid"><use class="noi-logo__brush" href="#noi-brush"/><use class="noi-logo__l noi-logo__l--1" href="#noi-n"/><use class="noi-logo__l noi-logo__l--2" href="#noi-o"/><use class="noi-logo__l noi-logo__l--3" href="#noi-i"/><use class="noi-logo__tag" href="#noi-tag"/></svg></h1>
 
       <nav class="icons" aria-label="Principal">
         <a class="icon-link" href="ristorante.html" data-stage-filter="verde">
@@ -64,7 +49,7 @@
           <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="8" width="32" height="32" rx="8"/><circle cx="24" cy="24" r="7"/><circle cx="33" cy="15" r="1.5" class="fill"/></svg>
           <span>Instagram</span>
         </a>
-        <a class="icon-link" href="https://restaurantenoi.com/regala-experiencia-noi/" target="_blank" rel="noopener">
+        <a class="icon-link" href="regala.html">
           <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="18" width="34" height="22" rx="1"/><path d="M5 18h38"/><path d="M24 18v22"/><path d="M24 18c-4-6-12-6-12-1 0 3 4 4 12 1z"/><path d="M24 18c4-6 12-6 12-1 0 3-4 4-12 1z"/></svg>
           <span>Regala</span>
         </a>
@@ -75,7 +60,7 @@
       </nav>
 
       <ul class="home__awards" aria-label="Reconocimientos">
-        <li><span class="home__award-name spaced">Michelin</span><span>2026</span></li>
+        <li><span class="home__award-name"><em>Guía Michelin</em></span><span>2026</span></li>
         <li class="home__awards-rule" aria-hidden="true"></li>
         <li><span class="home__award-name"><em>Guía Repsol</em></span><span>2026</span></li>
       </ul>

@@ -4,169 +4,57 @@
   "ogImage": "noi-web-05",
   "themeColor": "#5a1418",
   "theme": "rosso",
-  "headerClass": "",
-  "sala": "bar"
+  "home": "index.html",
+  "sala": "bar",
+  "cartaId": "sheet"
 } -->
 <!doctype html>
 <html lang="es">
 <head>
   {{> head}}
+  <link rel="stylesheet" href="assets/css/home.css?v={{v}}">
 </head>
 <body class="theme-rosso">
   {{> defs}}
-  {{> header}}
+  {{> topbar}}
 
-  <main id="contenido">
-    <section class="sala-hero" data-header-trigger aria-labelledby="sala-title">
-      <div class="slides slides--side" data-slides data-interval="5200">
-        {{img noi-web-05 | La barra de NOI Bar e Cucina con lámparas colgantes y taburetes rojos | 100vw | class="is-active" loading="eager" fetchpriority="high"}}
-        {{img noi-web-08 | Sala roja con suelo de rayas y la bodega iluminada | 100vw}}
-        {{img noi-web-07 | La barra vista desde la entrada | 100vw}}
+  <main class="home solo" id="contenido" data-home data-set="rosso">
+    <div class="slides home__stage" data-stage data-interval="6200" aria-hidden="true">
+      {{img noi-web-05 | | 100vw | class="is-active" data-caption="La barra" loading="eager" fetchpriority="high"}}
+      {{img noi-web-08 | | 100vw | data-caption="Sala roja"}}
+      {{img noi-web-11 | | 100vw | data-caption="Il bancone"}}
+      {{img noi-oct26-20 | | 100vw | data-caption="La bodega"}}
+    </div>
+    <div class="home__tint" aria-hidden="true"></div>
+
+    <div class="home__inner solo__inner">
+      <p class="label solo__eyebrow">La barra · Cocina de siempre</p>
+      <h1 class="solo__title"><small>NOI</small>Bar e <em>Cucina</em></h1>
+      <p class="solo__text">El lado más espontáneo del chef Gianni Pinto. Una cocina italiana auténtica, generosa y sin artificios, donde las recetas de siempre cobran vida. Para compartir, sin prisas, como en casa.</p>
+      <div class="solo__actions">
+        <a class="btn btn--solid" href="assets/docs/carta-noi-bar-e-cucina.pdf" target="_blank" rel="noopener" data-sheet-open="carta"><span>Ver la carta</span></a>
+        <a class="btn" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150506" target="_blank" rel="noopener" data-reserve="bar"><span>Reservar mesa</span></a>
       </div>
-      <div class="sala-hero__content">
-        <p class="label">La barra · Recoletos 6</p>
-        <h1 class="sala-hero__title" id="sala-title"><small>NOI</small>Bar e <em>Cucina</em></h1>
-        <div class="sala-hero__meta">
-          <a class="btn btn--solid" href="#carta"><span>Ver la carta</span></a>
-          <span class="scroll-cue label" aria-hidden="true">Bajar</span>
-        </div>
-      </div>
-    </section>
+    </div>
 
-    <section class="sala-intro" aria-labelledby="intro-title">
-      <p class="label reveal" style="color: var(--accent)">Cocina de siempre</p>
-      <h2 class="sala-intro__text reveal" id="intro-title" data-delay="1">El lado más <em>espontáneo</em> del chef Gianni Pinto.</h2>
-      <p class="reveal" data-delay="2" style="max-width: 40rem; color: var(--fg-soft)">Una cocina italiana auténtica, generosa y sin artificios, donde las recetas de siempre cobran vida a través de un producto extraordinario. Un espacio para compartir, disfrutar sin prisas y sentirse como en casa.</p>
-    </section>
-
-    <!-- Carta (transcrita del PDF «Carta NOI Bar e Cucina») -->
-    <section class="carta" id="carta" aria-labelledby="carta-title">
-      <div class="carta__head">
-        <div class="carta__brand">
-          <span class="logo">
-            <svg class="logo__brush" viewBox="0 0 300 34" aria-hidden="true"><use href="#brush"/></svg>
-            <span class="logo__word" aria-hidden="true">NOI</span>
-            <span class="logo__tag" aria-hidden="true">Bar e Cucina</span>
-          </span>
-        </div>
-        <h2 class="sr-only" id="carta-title">Carta de NOI Bar e Cucina</h2>
-      </div>
-
-      <nav class="carta__nav label" data-carta-nav aria-label="Secciones de la carta">
-        <a href="#per-cominciare">Per cominciare</a>
-        <a href="#pasta">Pasta</a>
-        <a href="#dalla-cucina">Dalla cucina</a>
-        <a href="#dolci">Dolci</a>
-      </nav>
-
-      <div class="carta__cols">
-        <div class="carta__col">
-          <section class="carta__section" id="per-cominciare" aria-label="Per cominciare">
-            <h3>Per cominciare</h3>
-            <div class="dish"><span class="dish__name">Pane e olio</span><span class="dish__price">3 <small>/ und</small></span><span class="dish__desc">Pan de masa madre y aceite de oliva virgen extra toscano</span></div>
-            <div class="dish"><span class="dish__name">Focaccia genovese</span><span class="dish__price">4 <small>/ und</small></span><span class="dish__desc">Focaccia blanca, aceite y sal</span></div>
-            <div class="dish"><span class="dish__name">Salumi italiani</span><span class="dish__price">16</span><span class="dish__desc">Mortadella Nera Mora Negrini, finocchiona y coppa</span></div>
-            <div class="dish"><span class="dish__name">Pane, burro e alici</span><span class="dish__price">6 <small>/ und</small></span><span class="dish__desc">Anchoa del Cantábrico y mantequilla de trufa blanca</span></div>
-            <div class="dish"><span class="dish__name">Tramezzino veneziano</span><span class="dish__price">12</span><span class="dish__desc">Sándwich de pollo de corral al horno, mayonesa, apio y mostaza</span></div>
-            <div class="dish"><span class="dish__name">Arancino alla milanese</span><span class="dish__price">6 <small>/ und</small></span><span class="dish__desc">Arroz frito al azafrán, relleno de ossobuco a la milanesa y emulsión ahumada de limón</span></div>
-            <div class="dish"><span class="dish__name">Panino e mortadella</span><span class="dish__price">12</span><span class="dish__desc">Pan brioche con mortadela de trufa y Provolone</span></div>
-            <div class="dish"><span class="dish__name">Rustico leccese</span><span class="dish__price">12</span><span class="dish__desc">Hojaldre relleno de mozzarella, Parmigiano Reggiano y tomate</span></div>
-          </section>
-
-          <section class="carta__section" id="pasta" aria-label="Pasta">
-            <h3>Pasta</h3>
-            <div class="dish"><span class="dish__name">Spaghetti aglio, olio e peperoncino</span><span class="dish__price">16</span><span class="dish__desc">Ajo frito, aceite de oliva y guindilla</span></div>
-            <div class="dish"><span class="dish__name">Rigatoni al pomodoro</span><span class="dish__price">16</span><span class="dish__desc">Salsa de tomate y parmigiano</span></div>
-            <div class="dish"><span class="dish__name">Spaghetti alla carbonara</span><span class="dish__price">20</span><span class="dish__desc">Sabayon de huevo, pecorino, guanciale y pimienta negra</span></div>
-            <div class="dish"><span class="dish__name">Rigatoni all’amatriciana</span><span class="dish__price">18</span><span class="dish__desc">Tomate, guanciale y pecorino romano</span></div>
-            <div class="dish"><span class="dish__name">Tonnarelli cacio e pepe</span><span class="dish__price">18</span><span class="dish__desc">Pecorino romano y pimienta negra</span></div>
-            <div class="dish"><span class="dish__name">Lasagna croccante</span><span class="dish__price">22</span><span class="dish__desc">Ragù bolognese, parmigiano y bechamel</span></div>
-            <div class="dish"><span class="dish__name">Spaghetti Garofalo all’astice</span><span class="dish__price">55</span><span class="dish__desc">Bogavante en su salsa, tomate y albahaca</span></div>
-          </section>
-        </div>
-
-        <div class="carta__col">
-          <section class="carta__section" id="dalla-cucina" aria-label="Dalla cucina">
-            <h3>Dalla cucina</h3>
-            <div class="dish"><span class="dish__name">Pomodoro, cipolla e aceto</span><span class="dish__price">18</span><span class="dish__desc">Tomate de otoño, cebolla de Figueras agridulce y piñones</span></div>
-            <div class="dish"><span class="dish__name">Zucchine, cozze e scapece</span><span class="dish__price">20</span><span class="dish__desc">Calabacines fritos alla Nerano con mejillones en carpione y berenjena ahumada</span></div>
-            <div class="dish"><span class="dish__name">Funghi, parmigiano e nocciole</span><span class="dish__price">17</span><span class="dish__desc">Carpaccio de portobello, Parmigiano Reggiano y mantequilla de setas con avellanas</span></div>
-            <div class="dish"><span class="dish__name">Peperoni arrostiti</span><span class="dish__price">18</span><span class="dish__desc">Pimientos a la brasa con su emulsión, alcaparras y aceitunas ‘taggiasche’</span></div>
-            <div class="dish"><span class="dish__name">Porri al Marsala</span><span class="dish__price">20</span><span class="dish__desc">Puerros confitados, taleggio, toffee de Marsala y salvia frita</span></div>
-            <div class="dish"><span class="dish__name">La parmigiana</span><span class="dish__price">24</span><span class="dish__desc">Berenjena frita, pesto de albahaca y espuma de Parmigiano Reggiano</span></div>
-            <div class="dish"><span class="dish__name">Branzino crudo</span><span class="dish__price">22</span><span class="dish__desc">Carpaccio de lubina salvaje, lima y aceite de oliva</span></div>
-            <div class="dish"><span class="dish__name">Battuta di manzo</span><span class="dish__price">24</span><span class="dish__desc">Tartar de solomillo cortado a mano y Provolone del Monaco</span></div>
-            <div class="dish"><span class="dish__name">Vitello tonnato</span><span class="dish__price">20</span><span class="dish__desc">Ternera blanca, salsa tonnata, alcaparras y limón</span></div>
-            <div class="dish"><span class="dish__name">Polpette al sugo</span><span class="dish__price">18</span><span class="dish__desc">Albóndigas de carne, salsa de tomate, Pecorino y albahaca</span></div>
-            <div class="dish"><span class="dish__name">Salsiccia di Ginosa</span><span class="dish__price">16</span><span class="dish__desc">Longaniza de cerdo a la brasa con giardiniera de verduras y salsa picante</span></div>
-          </section>
-
-          <section class="carta__section" id="dolci" aria-label="Dolci">
-            <h3>Dolci</h3>
-            <div class="dish"><span class="dish__name">Tiramisù</span><span class="dish__price">12</span><span class="dish__desc">Café y amaretto</span></div>
-            <div class="dish"><span class="dish__name">Panna cotta</span><span class="dish__price">10</span><span class="dish__desc">Vainilla, caramelo y frutos rojos</span></div>
-            <div class="dish"><span class="dish__name">Cannolo siciliano</span><span class="dish__price">10</span><span class="dish__desc">Ricotta, chocolate y pistacho</span></div>
-          </section>
-        </div>
-      </div>
-
-      <p class="carta__quote reveal">«NOI Bar e Cucina es nuestro lado más espontáneo: cocina italiana de casa, producto extraordinario y el placer de compartir»</p>
-      <div class="carta__foot">
-        <a class="btn" href="assets/docs/carta-noi-bar-e-cucina.pdf" target="_blank" rel="noopener"><span>Descargar la carta (PDF)</span></a>
-      </div>
-    </section>
-
-    <!-- Fotos grandes, sin texto, que se cortan al hacer scroll -->
-    <section class="cuts" data-cuts aria-label="La barra y la sala roja">
-      <div class="cuts__sticky">
-        <figure class="cut cut--pair" data-label="La barra">
-          {{img noi-web-06 | La barra con taburetes de terciopelo rojo | (min-width: 800px) 50vw, 100vw}}
-          {{img noi-oct26-06 | Barra de mármol y taburetes rojos | 50vw}}
-        </figure>
-        <figure class="cut" data-cut="center-v" data-label="La bodega">{{img noi-oct26-20 | Servicio de vino frente a la bodega iluminada | 100vw}}</figure>
-        <figure class="cut cut--pair" data-cut="bottom" data-label="Sala roja">
-          {{img noi-oct26-12 | Mesa bajo el espejo de luz en arco | (min-width: 800px) 50vw, 100vw}}
-          {{img noi-web-09 | Sala roja con suelo de rayas | 50vw}}
-        </figure>
-        <figure class="cut" data-cut="diagonal" data-label="Il bancone">{{img noi-web-14 | Servilleta NOI Bar e Cucina sobre el mármol | 100vw}}</figure>
-        <div class="cuts__caption label">
-          <span><span data-cuts-index>01</span> / 04</span>
-          <span class="cuts__progress" aria-hidden="true"><span data-cuts-bar></span></span>
-          <span data-cuts-label>La barra</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="gallery" data-gallery aria-labelledby="gallery-title">
-      <div class="gallery__head">
-        <h2 class="gallery__title reveal" id="gallery-title">Al <em>bancone</em></h2>
-        <div class="gallery__nav">
-          <button class="gallery__btn" type="button" data-gallery-prev aria-label="Foto anterior"><svg style="transform: scaleX(-1)"><use href="#arrow"/></svg></button>
-          <button class="gallery__btn" type="button" data-gallery-next aria-label="Foto siguiente"><svg><use href="#arrow"/></svg></button>
-        </div>
-      </div>
-      <div class="gallery__track" data-gallery-track tabindex="0" aria-label="Galería de la barra">
-        <figure class="gallery__item reveal-img">{{img noi-web-10 | Servilleta NOI sobre la barra de mármol | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
-        <figure class="gallery__item reveal-img">{{img noi-oct26-23 | Lámparas rojas de la sala | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
-        <figure class="gallery__item reveal-img">{{img noi-oct26-13 | Mesa bajo el espejo de luz en arco | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
-        <figure class="gallery__item reveal-img">{{img noi-web-16 | Mesas de mármol en la sala roja | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
-        <figure class="gallery__item reveal-img">{{img noi-oct26-14 | Lámpara de cristal sobre la barra | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
-        <figure class="gallery__item reveal-img">{{img noi-web-13 | Servilleta bordada NOI Bar e Cucina | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
-      </div>
-    </section>
-
-    <section class="pending" id="reservar" aria-labelledby="reservar-title">
-      <p class="label" style="color: var(--accent)">Reservas</p>
-      <h2 class="pending__title reveal" id="reservar-title">Reserva en <em>NOI Bar e Cucina</em></h2>
-      <p class="reveal" data-delay="1">Consulta la disponibilidad y reserva tu sitio en la barra o en la sala roja.</p>
-      <div class="pending__actions">
-        <a class="btn btn--solid" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150506" target="_blank" rel="noopener" data-reserve="bar"><span>Reservar mesa</span></a>
-        <a class="btn" href="ristorante.html"><span>Ver NOI Ristorante</span></a>
-      </div>
-    </section>
+    <div class="home__caption label">
+      <span><span data-stage-caption aria-hidden="true">La barra</span> · <span data-stage-index>01</span> / <span data-stage-total>04</span></span>
+      <a class="solo__next link-line" href="ristorante.html">NOI Ristorante <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+    </div>
   </main>
 
-  {{> footer}}
+  <dialog class="sheet" id="carta" aria-label="Carta de NOI Bar e Cucina">
+    <div class="sheet__head">
+      <span class="label">La carta · NOI Bar e Cucina</span>
+      <button class="sheet__close" type="button" data-sheet-close aria-label="Cerrar la carta">×</button>
+    </div>
+    <div class="sheet__body">
+      <section class="carta">
+        {{> carta-bar}}
+      </section>
+    </div>
+  </dialog>
+
   {{> modal}}
 </body>
 </html>

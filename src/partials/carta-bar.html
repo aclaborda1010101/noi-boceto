@@ -1,0 +1,62 @@
+<div class="carta__brand"><svg class="noi-logo" viewBox="114 136 212 52" aria-hidden="true"><use href="#noi-n"/><use href="#noi-o"/><use href="#noi-i"/></svg><span class="carta__brand-tag">Bar e Cucina</span></div>
+      <div class="carta__tabs label" role="tablist" aria-label="Secciones de la carta" data-tabs>
+        <button class="carta__tab" type="button" role="tab" id="tab-{{cartaId}}-per-cominciare" aria-controls="panel-{{cartaId}}-per-cominciare" aria-selected="true">Per cominciare</button>
+        <button class="carta__tab" type="button" role="tab" id="tab-{{cartaId}}-pasta" aria-controls="panel-{{cartaId}}-pasta" aria-selected="false">Pasta</button>
+        <button class="carta__tab" type="button" role="tab" id="tab-{{cartaId}}-dalla-cucina" aria-controls="panel-{{cartaId}}-dalla-cucina" aria-selected="false">Dalla cucina</button>
+        <button class="carta__tab" type="button" role="tab" id="tab-{{cartaId}}-dolci" aria-controls="panel-{{cartaId}}-dolci" aria-selected="false">Dolci</button>
+      </div>
+      <div class="carta__panels">
+        <section class="carta__panel" role="tabpanel" id="panel-{{cartaId}}-per-cominciare" aria-labelledby="tab-{{cartaId}}-per-cominciare" data-tab-panel>
+          <h3 class="carta__panel-title">Per cominciare</h3>
+          <div class="carta__dishes">
+            <div class="dish"><span class="dish__name">Pane e olio</span><span class="dish__price">3 <small>/ und</small></span><span class="dish__desc">Pan de masa madre y aceite de oliva virgen extra toscano</span></div>
+            <div class="dish"><span class="dish__name">Focaccia genovese</span><span class="dish__price">4 <small>/ und</small></span><span class="dish__desc">Focaccia blanca, aceite y sal</span></div>
+            <div class="dish"><span class="dish__name">Salumi italiani</span><span class="dish__price">16</span><span class="dish__desc">Mortadella Nera Mora Negrini, finocchiona y coppa</span></div>
+            <div class="dish"><span class="dish__name">Pane, burro e alici</span><span class="dish__price">6 <small>/ und</small></span><span class="dish__desc">Anchoa del Cantábrico y mantequilla de trufa blanca</span></div>
+            <div class="dish"><span class="dish__name">Tramezzino veneziano</span><span class="dish__price">12</span><span class="dish__desc">Sándwich de pollo de corral al horno, mayonesa, apio y mostaza</span></div>
+            <div class="dish"><span class="dish__name">Arancino alla milanese</span><span class="dish__price">6 <small>/ und</small></span><span class="dish__desc">Arroz frito al azafrán, relleno de ossobuco a la milanesa y emulsión ahumada de limón</span></div>
+            <div class="dish"><span class="dish__name">Panino e mortadella</span><span class="dish__price">12</span><span class="dish__desc">Pan brioche con mortadela de trufa y Provolone</span></div>
+            <div class="dish"><span class="dish__name">Rustico leccese</span><span class="dish__price">12</span><span class="dish__desc">Hojaldre relleno de mozzarella, Parmigiano Reggiano y tomate</span></div>
+          </div>
+        </section>
+        <section class="carta__panel" role="tabpanel" id="panel-{{cartaId}}-pasta" aria-labelledby="tab-{{cartaId}}-pasta" data-tab-panel>
+          <h3 class="carta__panel-title">Pasta</h3>
+          <div class="carta__dishes">
+            <div class="dish"><span class="dish__name">Spaghetti aglio, olio e peperoncino</span><span class="dish__price">16</span><span class="dish__desc">Ajo frito, aceite de oliva y guindilla</span></div>
+            <div class="dish"><span class="dish__name">Rigatoni al pomodoro</span><span class="dish__price">16</span><span class="dish__desc">Salsa de tomate y parmigiano</span></div>
+            <div class="dish"><span class="dish__name">Spaghetti alla carbonara</span><span class="dish__price">20</span><span class="dish__desc">Sabayon de huevo, pecorino, guanciale y pimienta negra</span></div>
+            <div class="dish"><span class="dish__name">Rigatoni all’amatriciana</span><span class="dish__price">18</span><span class="dish__desc">Tomate, guanciale y pecorino romano</span></div>
+            <div class="dish"><span class="dish__name">Tonnarelli cacio e pepe</span><span class="dish__price">18</span><span class="dish__desc">Pecorino romano y pimienta negra</span></div>
+            <div class="dish"><span class="dish__name">Lasagna croccante</span><span class="dish__price">22</span><span class="dish__desc">Ragù bolognese, parmigiano y bechamel</span></div>
+            <div class="dish"><span class="dish__name">Spaghetti Garofalo all’astice</span><span class="dish__price">55</span><span class="dish__desc">Bogavante en su salsa, tomate y albahaca</span></div>
+          </div>
+        </section>
+        <section class="carta__panel" role="tabpanel" id="panel-{{cartaId}}-dalla-cucina" aria-labelledby="tab-{{cartaId}}-dalla-cucina" data-tab-panel>
+          <h3 class="carta__panel-title">Dalla cucina</h3>
+          <div class="carta__dishes">
+            <div class="dish"><span class="dish__name">Pomodoro, cipolla e aceto</span><span class="dish__price">18</span><span class="dish__desc">Tomate de otoño, cebolla de Figueras agridulce y piñones</span></div>
+            <div class="dish"><span class="dish__name">Zucchine, cozze e scapece</span><span class="dish__price">20</span><span class="dish__desc">Calabacines fritos alla Nerano con mejillones en carpione y berenjena ahumada</span></div>
+            <div class="dish"><span class="dish__name">Funghi, parmigiano e nocciole</span><span class="dish__price">17</span><span class="dish__desc">Carpaccio de portobello, Parmigiano Reggiano y mantequilla de setas con avellanas</span></div>
+            <div class="dish"><span class="dish__name">Peperoni arrostiti</span><span class="dish__price">18</span><span class="dish__desc">Pimientos a la brasa con su emulsión, alcaparras y aceitunas ‘taggiasche’</span></div>
+            <div class="dish"><span class="dish__name">Porri al Marsala</span><span class="dish__price">20</span><span class="dish__desc">Puerros confitados, taleggio, toffee de Marsala y salvia frita</span></div>
+            <div class="dish"><span class="dish__name">La parmigiana</span><span class="dish__price">24</span><span class="dish__desc">Berenjena frita, pesto de albahaca y espuma de Parmigiano Reggiano</span></div>
+            <div class="dish"><span class="dish__name">Branzino crudo</span><span class="dish__price">22</span><span class="dish__desc">Carpaccio de lubina salvaje, lima y aceite de oliva</span></div>
+            <div class="dish"><span class="dish__name">Battuta di manzo</span><span class="dish__price">24</span><span class="dish__desc">Tartar de solomillo cortado a mano y Provolone del Monaco</span></div>
+            <div class="dish"><span class="dish__name">Vitello tonnato</span><span class="dish__price">20</span><span class="dish__desc">Ternera blanca, salsa tonnata, alcaparras y limón</span></div>
+            <div class="dish"><span class="dish__name">Polpette al sugo</span><span class="dish__price">18</span><span class="dish__desc">Albóndigas de carne, salsa de tomate, Pecorino y albahaca</span></div>
+            <div class="dish"><span class="dish__name">Salsiccia di Ginosa</span><span class="dish__price">16</span><span class="dish__desc">Longaniza de cerdo a la brasa con giardiniera de verduras y salsa picante</span></div>
+          </div>
+        </section>
+        <section class="carta__panel" role="tabpanel" id="panel-{{cartaId}}-dolci" aria-labelledby="tab-{{cartaId}}-dolci" data-tab-panel>
+          <h3 class="carta__panel-title">Dolci</h3>
+          <div class="carta__dishes">
+            <div class="dish"><span class="dish__name">Tiramisù</span><span class="dish__price">12</span><span class="dish__desc">Café y amaretto</span></div>
+            <div class="dish"><span class="dish__name">Panna cotta</span><span class="dish__price">10</span><span class="dish__desc">Vainilla, caramelo y frutos rojos</span></div>
+            <div class="dish"><span class="dish__name">Cannolo siciliano</span><span class="dish__price">10</span><span class="dish__desc">Ricotta, chocolate y pistacho</span></div>
+          </div>
+        </section>
+      </div>
+      <p class="carta__quote">«NOI Bar e Cucina es nuestro lado más espontáneo: cocina italiana de casa, producto extraordinario y el placer de compartir»</p>
+      <div class="carta__foot">
+        <a class="btn" href="assets/docs/carta-noi-bar-e-cucina.pdf" target="_blank" rel="noopener"><span>Descargar la carta (PDF)</span></a>
+      </div>

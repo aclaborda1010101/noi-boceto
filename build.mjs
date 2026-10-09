@@ -15,6 +15,8 @@ const SRC = join(ROOT, "src");
 const IMAGES = JSON.parse(readFileSync(join(SRC, "images.json"), "utf8"));
 
 const read = (path) => readFileSync(path, "utf8");
+// Versión para romper la caché del navegador en cada build (assets/*.css|js?v=...)
+const VERSION = Date.now().toString(36);
 
 function renderImg(spec) {
   const [name, alt = "", sizes = "100vw", attrs = ""] = spec.split("|").map((s) => s.trim());
@@ -44,7 +46,7 @@ function buildPage(file) {
   const raw = read(join(SRC, "pages", file));
   const metaMatch = raw.match(/<!--meta\s*([\s\S]*?)-->/);
   if (!metaMatch) throw new Error(`${file}: falta el bloque <!--meta {...} -->`);
-  const vars = JSON.parse(metaMatch[1]);
+  const vars = { ...JSON.parse(metaMatch[1]), v: VERSION };
   const html = render(raw.replace(metaMatch[0], "").trimStart(), vars);
   writeFileSync(join(ROOT, file), html);
   return file;

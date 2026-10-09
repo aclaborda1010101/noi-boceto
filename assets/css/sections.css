@@ -1,27 +1,25 @@
 /* NOI — piezas compartidas: slideshows con cortes, secuencia de fotos grandes, galería */
 
-/* ---------- Slideshow: una foto corta a la siguiente ---------- */
+/* ---------- Slideshow: una foto se funde en la siguiente ----------
+   El fundido va por transición de opacidad y el zoom lento por una única animación que
+   se mantiene igual al pasar de .is-active a .is-prev: así nunca se reinicia ni "salta". */
 .slides { position: absolute; inset: 0; overflow: hidden; background: var(--ink); }
 .slides img {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover;
   opacity: 0;
   z-index: 0;
+  transition: opacity var(--fade-ms, 2600ms) var(--ease-fade);
 }
-.slides img.is-active { opacity: 1; z-index: 2; animation: kenburns 11s linear both; }
-.slides img.is-prev { opacity: 1; z-index: 1; animation: kenburns-out 1.6s linear both; }
-.slides img.is-entering { animation: var(--cut, cut-up) var(--cut-ms, 1.5s) var(--ease-cut) both, kenburns 11s linear both; }
-.slides--side { --cut: cut-side; }
-.slides--center { --cut: cut-center; }
-@keyframes cut-up { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0); } }
-@keyframes cut-down { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
-@keyframes cut-side { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0); } }
-@keyframes cut-center { from { clip-path: inset(0 50% 0 50%); } to { clip-path: inset(0); } }
-@keyframes cut-center-h { from { clip-path: inset(50% 0 50% 0); } to { clip-path: inset(0); } }
-@keyframes cut-diag { from { clip-path: polygon(0 0, 0 0, -40% 100%, 0 100%); } to { clip-path: polygon(0 0, 140% 0, 100% 100%, 0 100%); } }
-@keyframes kenburns { from { transform: scale(1.14); } to { transform: scale(1.02); } }
-@keyframes kenburns-out { from { transform: scale(1.02); } to { transform: scale(1); } }
+.slides img.is-active, .slides img.is-prev { opacity: 1; animation: kenburns 16s linear both; }
+.slides img.is-active { z-index: 2; }
+.slides img.is-prev { z-index: 1; }
+@keyframes kenburns { from { transform: scale(1.1); } to { transform: scale(1); } }
 .slides.is-paused img { animation-play-state: paused; }
+/* La primera foto entra con un fundido cuando ya está decodificada (sin parpadeos) */
+.js .slides[data-slides], .js .slides[data-stage] { opacity: 0; transition: opacity 1600ms var(--ease-fade); animation: showAnyway 1ms linear 3.5s forwards; }
+@keyframes showAnyway { to { opacity: 1; } } /* red de seguridad si el JS no llega */
+.js .slides.is-loaded { opacity: 1; }
 
 /* ---------- Cortes: fotos grandes, sin texto, que se cortan al hacer scroll ---------- */
 .cuts { position: relative; height: calc(var(--n, 5) * 100svh); background: var(--ink); }

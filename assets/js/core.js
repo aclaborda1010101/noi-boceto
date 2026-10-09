@@ -62,31 +62,40 @@
     },
   };
 
-  /* ---------- Loader (primera visita a la home) ---------- */
-  function runLoader() {
-    const loader = document.querySelector("[data-loader].loader");
-    store.set("noi-visited", "1");
-    if (!loader || !root.classList.contains("js-loader")) return false;
-    if (reduceMotion) { loader.classList.add("is-done"); return false; }
+  /* ---------- Logo oficial: letras → brochazo → lema; al pasar el ratón el brochazo se repinta ---------- */
+  const LOGO_INTRO_MS = 3900;
+  const LOGO_REPAINT_MS = 1700;
 
-    const fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
-    fontsReady.then(() => {
-      loader.classList.add("is-drawn");
-      setTimeout(() => {
-        loader.classList.add("is-open");
-        markReady();
-        setTimeout(() => {
-          loader.classList.add("is-done");
-          root.classList.remove("js-loader");
-        }, LOADER_OPEN_MS);
-      }, LOADER_DRAW_MS);
+  function playLogo(el) {
+    if (reduceMotion) { el.classList.add("is-done"); return; }
+    el.classList.add("is-playing");
+    setTimeout(() => { el.classList.remove("is-playing"); el.classList.add("is-done"); }, LOGO_INTRO_MS);
+  }
+
+  function initLogos() {
+    const logos = [...document.querySelectorAll("[data-logo-animate]")];
+    logos.forEach((el) => {
+      if (el.dataset.logoAnimate === "view" && "IntersectionObserver" in window) {
+        const io = new IntersectionObserver(([entry]) => {
+          if (!entry.isIntersecting) return;
+          playLogo(el);
+          io.disconnect();
+        }, { threshold: 0.4 });
+        io.observe(el);
+      } else {
+        window.NOI.onReady(() => playLogo(el));
+      }
+      el.addEventListener("pointerenter", () => {
+        if (!el.classList.contains("is-done") || el.classList.contains("is-repaint")) return;
+        el.classList.add("is-repaint");
+        setTimeout(() => el.classList.remove("is-repaint"), LOGO_REPAINT_MS);
+      });
     });
-    return true;
   }
 
   /* ---------- Cortina entre páginas ---------- */
   const curtain = document.querySelector("[data-curtain]");
-  const THEME_BY_PAGE = { "ristorante.html": "verde", "bar-e-cucina.html": "rosso" };
+  const themeOf = (page) => (/ristorante/.test(page) ? "verde" : /bar-e-cucina/.test(page) ? "rosso" : "home");
 
   function revealFromCurtain() {
     if (!curtain || !root.classList.contains("js-curtain-in")) return;
@@ -130,7 +139,7 @@
 
     event.preventDefault();
     closeMenu();
-    const theme = THEME_BY_PAGE[pageOf(url)] || "home";
+    const theme = themeOf(pageOf(url));
     curtain.className = `curtain curtain--${theme} is-covering`;
     store.set("noi-curtain", "1");
     setTimeout(() => { window.location.href = url.href; }, CURTAIN_MS);
@@ -253,15 +262,6 @@
     });
   }
 
-  /* ---------- Propuesta activa (boceto): "Inicio" vuelve a la portada que se está enseñando ---------- */
-  function initVersion() {
-    const current = document.body.dataset.version;
-    if (current) store.set("noi-version", current);
-    if ((current || store.get("noi-version")) !== "editorial") return;
-    document.querySelectorAll('a[href="index.html"]:not(.switcher a)').forEach((a) => a.setAttribute("href", "editorial.html"));
-  }
-
-  initVersion();
   document.addEventListener("click", onLinkClick);
   revealFromCurtain();
   initHeader();
@@ -269,5 +269,7 @@
   initReveals();
   initParallax();
   initWarmup();
-  if (!runLoader()) markReady();
+  initLogos();
+  store.set("noi-visited", "1");
+  markReady();
 })();

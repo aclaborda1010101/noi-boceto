@@ -85,47 +85,45 @@
   color: var(--ink);
   --line: rgb(28 19 17 / 22%);
 }
-.carta__head { display: grid; gap: 1.2rem; justify-items: center; text-align: center; margin-bottom: clamp(2.5rem, 2rem + 3vw, 5rem); }
-.carta__brand .logo { width: 11rem; gap: 0.3rem; color: var(--ink); }
-.carta__brand .logo__word { font-size: 3.2rem; }
-.carta__brand .logo__tag { font-size: 0.95rem; letter-spacing: 0.2em; margin-right: -0.2em; }
-.carta__nav {
-  position: sticky; top: var(--header-h); z-index: 5;
-  display: flex; justify-content: center; flex-wrap: wrap; gap: 0.4rem 1.6rem;
-  padding: 1rem 0;
-  margin-bottom: 2.5rem;
+.carta__brand { display: grid; justify-items: center; gap: 0.7rem; margin-bottom: 2rem; color: var(--ink); }
+.carta__brand .noi-logo { width: 8.5rem; }
+.carta__brand-tag { font-size: 1rem; letter-spacing: 0.2em; margin-right: -0.2em; }
+/* Pestañas: una sección de la carta cada vez */
+.carta__tabs {
+  position: sticky; top: var(--carta-sticky, var(--header-h)); z-index: 5;
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 0.3rem clamp(1rem, 0.5rem + 2vw, 2.4rem);
+  padding: 0.9rem 0;
+  margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.5rem);
   background: var(--marmo);
   border-block: 1px solid var(--line);
 }
-.carta__nav a { position: relative; padding: 0.3rem 0; color: rgb(28 19 17 / 60%); transition: color var(--dur-fast); }
-.carta__nav a::after {
+.carta__tab { position: relative; padding: 0.45rem 0.1rem; font-size: 0.8rem; color: rgb(28 19 17 / 55%); transition: color var(--dur-fast); }
+.carta__tab::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--rosso);
   transform: scaleX(0); transition: transform var(--dur) var(--ease-out);
 }
-.carta__nav a:hover, .carta__nav a.is-current { color: var(--ink); }
-.carta__nav a.is-current::after { transform: scaleX(1); }
-.carta__cols { display: grid; gap: clamp(3rem, 2rem + 3vw, 5rem) clamp(2rem, 1rem + 4vw, 6rem); max-width: 76rem; margin-inline: auto; }
-@media (min-width: 900px) {
-  .carta__cols { grid-template-columns: 1fr 1fr; }
-  .carta__col + .carta__col { border-left: 1px solid var(--line); padding-left: clamp(2rem, 1rem + 4vw, 6rem); }
-}
-.carta__col { display: grid; gap: clamp(3rem, 2rem + 3vw, 5rem); align-content: start; }
-.carta__section { scroll-margin-top: calc(var(--header-h) + 5rem); }
-.carta__section h3 {
+.carta__tab:hover, .carta__tab[aria-selected="true"] { color: var(--ink); }
+.carta__tab[aria-selected="true"]::after { transform: scaleX(1); }
+.carta__panels { max-width: 76rem; margin-inline: auto; }
+.carta__panel:not([hidden]) { animation: fadeIn 700ms var(--ease-out) both; }
+.carta__panel + .carta__panel { margin-top: 3rem; } /* sin JS se ven todas seguidas */
+.carta__panel-title {
   display: flex; align-items: center; gap: 1.2rem;
   font-size: clamp(1.5rem, 1.2rem + 1vw, 2.1rem);
   font-weight: 400;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.4rem;
 }
-.carta__section h3::after { content: ""; flex: 1; max-width: 6rem; height: 1px; background: currentColor; }
-.dish { display: grid; grid-template-columns: 1fr auto; gap: 0.1rem 1.5rem; padding-block: 0.85rem; }
-.dish + .dish { border-top: 1px solid rgb(28 19 17 / 8%); }
+.carta__panel-title::after { content: ""; flex: 1; max-width: 6rem; height: 1px; background: currentColor; }
+.carta__dishes { display: grid; gap: 0 clamp(2rem, 1rem + 4vw, 6rem); }
+@media (min-width: 900px) { .carta__dishes { grid-template-columns: 1fr 1fr; } }
+.dish { display: grid; grid-template-columns: 1fr auto; gap: 0.1rem 1.5rem; padding-block: 0.85rem; border-top: 1px solid rgb(28 19 17 / 8%); align-content: start; }
 .dish__name { font-size: 1.02rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; line-height: 1.35; }
 .dish__price { font-size: 1.05rem; font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
 .dish__price small { font-size: 0.85em; color: rgb(28 19 17 / 65%); }
 .dish__desc { grid-column: 1 / -1; font-style: italic; color: rgb(28 19 17 / 74%); font-size: 1.08rem; line-height: 1.4; max-width: 30rem; }
+.sheet .carta { padding: clamp(1.5rem, 1rem + 2vw, 3rem) var(--gutter) 3rem; --carta-sticky: 0px; }
 .carta__quote {
   max-width: 44rem; margin: clamp(3rem, 2rem + 4vw, 6rem) auto 0;
   padding-top: 2rem; border-top: 1px solid var(--line);

@@ -10,8 +10,8 @@
   const pad = (n) => String(n).padStart(2, "0");
 
   /* ---------- Slideshows: una foto corta a la siguiente ---------- */
-  const DEFAULT_INTERVAL = 5200;
-  const CUT_MS = 1500;
+  const DEFAULT_INTERVAL = 6200;
+  const FADE_MS = 2600;
 
   function initSlides(el) {
     const images = [...el.querySelectorAll("img")];
@@ -33,7 +33,7 @@
       setTimeout(() => {
         prev.classList.remove("is-prev");
         next.classList.remove("is-entering");
-      }, CUT_MS);
+      }, FADE_MS);
     };
     const start = () => { if (!timer && visible && !document.hidden) timer = setInterval(advance, interval); };
     const stop = () => { clearInterval(timer); timer = null; };
@@ -49,9 +49,7 @@
     NOI.onReady(() => setTimeout(start, offset));
   }
 
-  /* ---------- Escenario de la home: fotos de las dos salas con cortes variados ---------- */
-  const STAGE_CUTS = ["cut-up", "cut-side", "cut-center", "cut-diag", "cut-down", "cut-center-h"];
-  const STAGE_CUT_MS = 1600;
+  /* ---------- Escenario de la home: fotos de las dos salas fundiéndose ---------- */
   const FILTER_LEAVE_DELAY = 450;
 
   function initStage(stage) {
@@ -63,7 +61,6 @@
     const totalEl = document.querySelector("[data-stage-total]");
     const bar = document.querySelector("[data-stage-bar]");
     let index = 0;
-    let cutCount = 0;
     let filter = null;
     let busyUntil = 0;
     let timer = null;
@@ -94,19 +91,15 @@
       const prev = images[index];
       const next = images[target];
       index = target;
-      const cut = STAGE_CUTS[cutCount % STAGE_CUTS.length];
-      cutCount += 1;
-      next.style.setProperty("--cut", NOI.reduceMotion ? "none" : cut);
-      next.style.setProperty("--cut-ms", `${STAGE_CUT_MS}ms`);
       prev.classList.remove("is-active", "is-entering");
       prev.classList.add("is-prev");
       next.classList.remove("is-prev");
       next.classList.add("is-active", "is-entering");
-      busyUntil = performance.now() + STAGE_CUT_MS;
+      busyUntil = performance.now() + FADE_MS;
       setTimeout(() => {
         prev.classList.remove("is-prev");
         next.classList.remove("is-entering");
-      }, STAGE_CUT_MS);
+      }, FADE_MS);
       updateMeta();
     };
 
@@ -222,29 +215,19 @@
     gallery.querySelector("[data-gallery-next]")?.addEventListener("click", () => step(1));
   }
 
-  /* ---------- Reservas: modal con CoverManager ---------- */
+  /* ---------- Reservas: modal con CoverManager (siempre con una sala seleccionada) ---------- */
+  const DEFAULT_SALA = "ristorante";
+
   function initReserve() {
     const modal = document.querySelector("[data-reserve-modal]");
     if (!modal || typeof modal.showModal !== "function") return; // sin <dialog>: los enlaces abren CoverManager
     const tabs = [...modal.querySelectorAll(".reserve-tab")];
     const frame = modal.querySelector("[data-reserve-frame]");
-    const choose = modal.querySelector("[data-reserve-choose]");
-    const external = modal.querySelector("[data-reserve-external]");
 
     const select = (sala) => {
-      const tab = tabs.find((t) => t.dataset.sala === sala);
+      const tab = tabs.find((t) => t.dataset.sala === sala) || tabs.find((t) => t.dataset.sala === DEFAULT_SALA);
       tabs.forEach((t) => t.setAttribute("aria-selected", String(t === tab)));
-      if (!tab) {
-        frame.hidden = true;
-        choose.hidden = false;
-        external.hidden = true;
-        return;
-      }
       if (frame.getAttribute("src") !== tab.dataset.url) frame.setAttribute("src", tab.dataset.url);
-      frame.hidden = false;
-      choose.hidden = true;
-      external.href = tab.dataset.url;
-      external.hidden = false;
     };
 
     const open = (sala) => {
@@ -266,23 +249,68 @@
     modal.addEventListener("close", () => NOI.lockScroll(false));
   }
 
-  /* ---------- Carta: sección activa en la navegación ---------- */
-  function initCartaNav(nav) {
-    const links = [...nav.querySelectorAll("a[href^='#']")];
-    const sections = links.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
-    if (!sections.length) return;
-    NOI.onScroll(() => {
-      const line = window.innerHeight * 0.35;
-      let currentId = sections[0].id;
-      sections.forEach((sec) => { if (sec.getBoundingClientRect().top < line) currentId = sec.id; });
-      links.forEach((a) => a.classList.toggle("is-current", a.getAttribute("href") === `#${currentId}`));
+  /* ---------- Pestañas (carta): una sección visible cada vez ---------- */
+  function initTabs(list) {
+    const tabs = [...list.querySelectorAll('[role="tab"]')];
+    const panels = tabs.map((tab) => document.getElementById(tab.getAttribute("aria-controls")));
+    const select = (index, focus) => {
+      tabs.forEach((tab, i) => {
+        const on = i === index;
+        tab.setAttribute("aria-selected", String(on));
+        tab.tabIndex = on ? 0 : -1;
+        if (panels[i]) panels[i].hidden = !on;
+      });
+      if (focus) tabs[index].focus();
+    };
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => select(i, false));
+      tab.addEventListener("keydown", (event) => {
+        const step = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
+        if (!step) return;
+        event.preventDefault();
+        select((i + step + tabs.length) % tabs.length, true);
+      });
+    });
+    select(Math.max(0, tabs.findIndex((t) => t.getAttribute("aria-selected") === "true")), false);
+  }
+
+  /* ---------- Hojas (carta / menú degustación) ---------- */
+  function initSheets() {
+    document.querySelectorAll("[data-sheet-open]").forEach((trigger) => {
+      const sheet = document.getElementById(trigger.dataset.sheetOpen);
+      if (!sheet || typeof sheet.showModal !== "function") return; // sin <dialog>: sigue el enlace (PDF)
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        sheet.showModal();
+        NOI.lockScroll(true);
+      });
+    });
+    document.querySelectorAll("dialog.sheet").forEach((sheet) => {
+      sheet.querySelector("[data-sheet-close]")?.addEventListener("click", () => sheet.close());
+      sheet.addEventListener("click", (event) => { if (event.target === sheet) sheet.close(); });
+      sheet.addEventListener("close", () => NOI.lockScroll(false));
     });
   }
 
+  /* La primera foto de cada pase entra con fundido cuando está lista */
+  function revealWhenLoaded(el) {
+    const first = el.querySelector("img.is-active") || el.querySelector("img");
+    const show = () => el.classList.add("is-loaded");
+    if (!first) { show(); return; }
+    const ready = () => (first.decode ? first.decode().catch(() => {}) : Promise.resolve()).then(show);
+    if (first.complete && first.naturalWidth) ready();
+    else {
+      first.addEventListener("load", ready, { once: true });
+      first.addEventListener("error", show, { once: true });
+    }
+  }
+
+  document.querySelectorAll("[data-stage], [data-slides]").forEach(revealWhenLoaded);
   document.querySelectorAll("[data-stage]").forEach(initStage);
   document.querySelectorAll("[data-slides]").forEach(initSlides);
   document.querySelectorAll("[data-cuts]").forEach(initCuts);
   document.querySelectorAll("[data-gallery]").forEach(initGallery);
-  document.querySelectorAll("[data-carta-nav]").forEach(initCartaNav);
+  document.querySelectorAll("[data-tabs]").forEach(initTabs);
+  initSheets();
   initReserve();
 })();

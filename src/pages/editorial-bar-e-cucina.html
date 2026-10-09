@@ -1,0 +1,104 @@
+<!--meta {
+  "title": "NOI Bar e Cucina — Cocina italiana de siempre en Madrid",
+  "description": "NOI Bar e Cucina: el lado más espontáneo del chef Gianni Pinto. Cocina italiana auténtica y generosa para compartir en la barra de Recoletos 6, Madrid. Consulta la carta y reserva.",
+  "ogImage": "noi-web-05",
+  "themeColor": "#5a1418",
+  "theme": "rosso",
+  "headerClass": "",
+  "sala": "bar",
+  "home": "editorial.html",
+  "ristorante": "editorial-ristorante.html",
+  "bar": "editorial-bar-e-cucina.html",
+  "regala": "editorial-regala.html",
+  "cartaId": "page"
+} -->
+<!doctype html>
+<html lang="es">
+<head>
+  {{> head}}
+</head>
+<body class="theme-rosso">
+  {{> defs}}
+  {{> header}}
+
+  <main id="contenido">
+    <section class="sala-hero" data-header-trigger aria-labelledby="sala-title">
+      <div class="slides" data-slides data-interval="6200">
+        {{img noi-web-05 | La barra de NOI Bar e Cucina con lámparas colgantes y taburetes rojos | 100vw | class="is-active" loading="eager" fetchpriority="high"}}
+        {{img noi-web-08 | Sala roja con suelo de rayas y la bodega iluminada | 100vw}}
+      </div>
+      <div class="sala-hero__content">
+        <p class="label">La barra · Recoletos 6</p>
+        <h1 class="sala-hero__title" id="sala-title"><small>NOI</small>Bar e <em>Cucina</em></h1>
+        <div class="sala-hero__meta">
+          <a class="btn btn--solid" href="#carta"><span>Ver la carta</span></a>
+          <span class="scroll-cue label" aria-hidden="true">Bajar</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sala-intro" aria-labelledby="intro-title">
+      <p class="label reveal" style="color: var(--accent)">Cocina de siempre</p>
+      <h2 class="sala-intro__text reveal" id="intro-title" data-delay="1">El lado más <em>espontáneo</em> del chef Gianni Pinto.</h2>
+      <p class="reveal" data-delay="2" style="max-width: 40rem; color: var(--fg-soft)">Una cocina italiana auténtica, generosa y sin artificios, donde las recetas de siempre cobran vida a través de un producto extraordinario. Un espacio para compartir, disfrutar sin prisas y sentirse como en casa.</p>
+    </section>
+
+    <!-- Carta (transcrita del PDF «Carta NOI Bar e Cucina»), por pestañas -->
+    <section class="carta" id="carta" aria-label="Carta de NOI Bar e Cucina">
+      {{> carta-bar}}
+    </section>
+
+    <!-- Fotos grandes, sin texto, que se cortan al hacer scroll -->
+    <section class="cuts" data-cuts aria-label="La barra y la sala roja">
+      <div class="cuts__sticky">
+        <figure class="cut cut--pair" data-label="La barra">
+          {{img noi-oct26-06 | Barra de mármol y taburetes de terciopelo rojo | (min-width: 800px) 50vw, 100vw}}
+          {{img noi-web-12 | Servilleta bordada NOI Bar e Cucina | 50vw}}
+        </figure>
+        <figure class="cut" data-cut="center-v" data-label="La bodega">{{img noi-oct26-20 | Servicio de vino frente a la bodega iluminada | 100vw}}</figure>
+        <figure class="cut cut--pair" data-cut="bottom" data-label="Sala roja">
+          {{img noi-oct26-12 | Mesa bajo el espejo de luz en arco | (min-width: 800px) 50vw, 100vw}}
+          {{img noi-web-16 | Mesas de mármol en la sala roja | 50vw}}
+        </figure>
+        <figure class="cut cut--pair" data-cut="diagonal" data-label="Luces">
+          {{img noi-oct26-14 | Lámpara de cristal martillado | (min-width: 800px) 50vw, 100vw}}
+          {{img noi-oct26-23 | Lámparas rojas y latón | 50vw}}
+        </figure>
+        <div class="cuts__caption label">
+          <span><span data-cuts-index>01</span> / 04</span>
+          <span class="cuts__progress" aria-hidden="true"><span data-cuts-bar></span></span>
+          <span data-cuts-label>La barra</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" data-gallery aria-labelledby="gallery-title">
+      <div class="gallery__head">
+        <h2 class="gallery__title reveal" id="gallery-title">I <em>dettagli</em></h2>
+        <div class="gallery__nav">
+          <button class="gallery__btn" type="button" data-gallery-prev aria-label="Foto anterior"><svg style="transform: scaleX(-1)"><use href="#arrow"/></svg></button>
+          <button class="gallery__btn" type="button" data-gallery-next aria-label="Foto siguiente"><svg><use href="#arrow"/></svg></button>
+        </div>
+      </div>
+      <div class="gallery__track" data-gallery-track tabindex="0" aria-label="Galería de detalles">
+        <figure class="gallery__item reveal-img">{{img noi-oct26-04 | Mesa de mármol con servilletas NOI | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
+        <figure class="gallery__item reveal-img">{{img noi-oct26-21 | Cubiertos sobre mármol | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
+        <figure class="gallery__item reveal-img">{{img noi-oct26-15 | Servilleta NOI en la barra | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
+      </div>
+    </section>
+
+    <section class="pending" id="reservar" aria-labelledby="reservar-title">
+      <p class="label" style="color: var(--accent)">Reservas</p>
+      <h2 class="pending__title reveal" id="reservar-title">Reserva en <em>NOI Bar e Cucina</em></h2>
+      <p class="reveal" data-delay="1">Consulta la disponibilidad y reserva tu sitio en la barra o en la sala roja.</p>
+      <div class="pending__actions">
+        <a class="btn btn--solid" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150506" target="_blank" rel="noopener" data-reserve="bar"><span>Reservar mesa</span></a>
+        <a class="btn" href="editorial-ristorante.html"><span>Ver NOI Ristorante</span></a>
+      </div>
+    </section>
+  </main>
+
+  {{> footer}}
+  {{> modal}}
+</body>
+</html>
