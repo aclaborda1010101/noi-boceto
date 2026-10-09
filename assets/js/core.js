@@ -262,6 +262,21 @@
     });
   }
 
+  /* ---------- Propuestas (boceto): marcar la actual y volver siempre a su portada ---------- */
+  function initProposals() {
+    const page = pageOf(location);
+    document.querySelectorAll(".switcher a").forEach((a) => {
+      if (pageOf(new URL(a.href, location.href)) === page) a.setAttribute("aria-current", "page");
+    });
+    const homePage = document.body.dataset.homePage;
+    if (homePage) { store.set("noi-home", homePage); return; }
+    const remembered = store.get("noi-home");
+    if (remembered && remembered !== "index.html") {
+      document.querySelectorAll('a[href="index.html"]:not(.switcher a)').forEach((a) => a.setAttribute("href", remembered));
+    }
+  }
+
+  initProposals();
   document.addEventListener("click", onLinkClick);
   revealFromCurtain();
   initHeader();

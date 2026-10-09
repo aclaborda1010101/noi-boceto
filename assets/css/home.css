@@ -205,3 +205,13 @@
 body:has(> .home) { background: #1b1110; }
 body.theme-verde:has(> .home) { background: #161a0e; }
 body.theme-rosso:has(> .home) { background: #2a0a0c; }
+
+/* Propuesta 2: en móvil, iconos en dos filas (3 + 3), más grandes y legibles */
+@media (max-width: 640px) {
+  .icons-2rows .icons { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem 0.4rem; max-width: 21rem; }
+  .icons-2rows .icon-link { gap: 0.55rem; }
+  .icons-2rows .icon-link svg { width: 2.05rem; }
+  .icons-2rows .icon-link span { font-size: 0.82rem; white-space: nowrap; }
+  .icons-2rows.page-home .home__inner { gap: 1.7rem; padding-top: 3.2rem; }
+  .icons-2rows.page-home .noi-logo--xl { width: 12.5rem; }
+}

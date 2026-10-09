@@ -22,9 +22,8 @@
 
   <main id="contenido">
     <section class="sala-hero" data-header-trigger aria-labelledby="sala-title">
-      <div class="slides" data-slides data-interval="6000">
+      <div class="slides" data-slides>
         {{img noi-web-03 | La sala verde del Ristorante con techo de lunares y espejos ovalados | 100vw | class="is-active" loading="eager" fetchpriority="high"}}
-        {{img noi-oct26-01 | Mesa redonda vestida de blanco en la sala verde | 100vw}}
       </div>
       <div class="sala-hero__content">
         <p class="label">Sala verde · Recoletos 6</p>
@@ -47,9 +46,18 @@
       </ul>
     </section>
 
-    <section class="photo-pair" aria-label="La mesa en la sala verde">
-      <figure class="reveal-img">{{img noi-web-15 | Mesa vestida de blanco junto a la pared verde | (min-width: 800px) 50vw, 100vw}}</figure>
-      <figure class="reveal-img reveal-img--side">{{img noi-oct26-22 | Copas sobre mantel blanco | (min-width: 800px) 50vw, 100vw}}</figure>
+    <!-- Fotos grandes, sin texto, que se cortan al hacer scroll -->
+    <section class="cuts" data-cuts aria-label="La sala verde">
+      <div class="cuts__sticky">
+        <figure class="cut" data-label="La mesa">{{img noi-oct26-01 | Mesa redonda vestida de blanco en la sala verde | 100vw}}</figure>
+        <figure class="cut" data-cut="center-v" data-label="Sala verde">{{img noi-web-15 | Mesa junto a la pared verde con su lámpara | 100vw}}</figure>
+        <figure class="cut" data-cut="bottom" data-label="El servicio">{{img noi-oct26-22 | Copas y servicio sobre mantel blanco | 100vw}}</figure>
+        <div class="cuts__caption label">
+          <span><span data-cuts-index>01</span> / 03</span>
+          <span class="cuts__progress" aria-hidden="true"><span data-cuts-bar></span></span>
+          <span data-cuts-label>La mesa</span>
+        </div>
+      </div>
     </section>
 
     <section class="pending" aria-labelledby="carta-ristorante">

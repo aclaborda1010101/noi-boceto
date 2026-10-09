@@ -14,9 +14,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@400;500&display=swap">
-  <link rel="stylesheet" href="assets/css/base.css?v=mv193f22">
-  <link rel="stylesheet" href="assets/css/sections.css?v=mv193f22">
-  <link rel="stylesheet" href="assets/css/sala.css?v=mv193f22">
+  <link rel="stylesheet" href="assets/css/base.css?v=mv19h5ft">
+  <link rel="stylesheet" href="assets/css/sections.css?v=mv19h5ft">
+  <link rel="stylesheet" href="assets/css/sala.css?v=mv19h5ft">
   <script>
     /* Estado antes del primer pintado: evita parpadeos de la cortina y del loader */
     (function () {
@@ -88,9 +88,8 @@
 
   <main id="contenido">
     <section class="sala-hero" data-header-trigger aria-labelledby="sala-title">
-      <div class="slides" data-slides data-interval="6000">
+      <div class="slides" data-slides>
         <img src="assets/img/noi-web-03-1200.webp" srcset="assets/img/noi-web-03-1200.webp 1200w, assets/img/noi-web-03-2400.webp 2400w" sizes="100vw" width="1200" height="800" alt="La sala verde del Ristorante con techo de lunares y espejos ovalados" decoding="async" class="is-active" loading="eager" fetchpriority="high">
-        <img src="assets/img/noi-oct26-01-1200.webp" srcset="assets/img/noi-oct26-01-1200.webp 800w, assets/img/noi-oct26-01-2400.webp 1600w" sizes="100vw" width="800" height="1200" alt="Mesa redonda vestida de blanco en la sala verde" loading="lazy" decoding="async">
       </div>
       <div class="sala-hero__content">
         <p class="label">Sala verde · Recoletos 6</p>
@@ -113,9 +112,18 @@
       </ul>
     </section>
 
-    <section class="photo-pair" aria-label="La mesa en la sala verde">
-      <figure class="reveal-img"><img src="assets/img/noi-web-15-1200.webp" srcset="assets/img/noi-web-15-1200.webp 800w, assets/img/noi-web-15-2400.webp 1600w" sizes="(min-width: 800px) 50vw, 100vw" width="800" height="1200" alt="Mesa vestida de blanco junto a la pared verde" loading="lazy" decoding="async"></figure>
-      <figure class="reveal-img reveal-img--side"><img src="assets/img/noi-oct26-22-1200.webp" srcset="assets/img/noi-oct26-22-1200.webp 800w, assets/img/noi-oct26-22-2400.webp 1600w" sizes="(min-width: 800px) 50vw, 100vw" width="800" height="1200" alt="Copas sobre mantel blanco" loading="lazy" decoding="async"></figure>
+    <!-- Fotos grandes, sin texto, que se cortan al hacer scroll -->
+    <section class="cuts" data-cuts aria-label="La sala verde">
+      <div class="cuts__sticky">
+        <figure class="cut" data-label="La mesa"><img src="assets/img/noi-oct26-01-1200.webp" srcset="assets/img/noi-oct26-01-1200.webp 800w, assets/img/noi-oct26-01-2400.webp 1600w" sizes="100vw" width="800" height="1200" alt="Mesa redonda vestida de blanco en la sala verde" loading="lazy" decoding="async"></figure>
+        <figure class="cut" data-cut="center-v" data-label="Sala verde"><img src="assets/img/noi-web-15-1200.webp" srcset="assets/img/noi-web-15-1200.webp 800w, assets/img/noi-web-15-2400.webp 1600w" sizes="100vw" width="800" height="1200" alt="Mesa junto a la pared verde con su lámpara" loading="lazy" decoding="async"></figure>
+        <figure class="cut" data-cut="bottom" data-label="El servicio"><img src="assets/img/noi-oct26-22-1200.webp" srcset="assets/img/noi-oct26-22-1200.webp 800w, assets/img/noi-oct26-22-2400.webp 1600w" sizes="100vw" width="800" height="1200" alt="Copas y servicio sobre mantel blanco" loading="lazy" decoding="async"></figure>
+        <div class="cuts__caption label">
+          <span><span data-cuts-index>01</span> / 03</span>
+          <span class="cuts__progress" aria-hidden="true"><span data-cuts-bar></span></span>
+          <span data-cuts-label>La mesa</span>
+        </div>
+      </div>
     </section>
 
     <section class="pending" aria-labelledby="carta-ristorante">
@@ -176,8 +184,8 @@
   </dialog>
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
-  <script src="assets/js/core.js?v=mv193f22" defer></script>
-  <script src="assets/js/widgets.js?v=mv193f22" defer></script>
+  <script src="assets/js/core.js?v=mv19h5ft" defer></script>
+  <script src="assets/js/widgets.js?v=mv19h5ft" defer></script>
 
 </body>
 </html>

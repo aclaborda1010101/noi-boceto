@@ -490,7 +490,7 @@ ul, ol { padding: 0; list-style: none; }
 .switcher a:hover { background: rgb(243 235 220 / 14%); }
 .switcher a[aria-current="page"] { background: var(--crema); color: var(--ink); }
 .page-home .home__caption { bottom: 4.2rem; }
-@media (max-width: 640px) { .switcher { font-size: 0.56rem; letter-spacing: 0.14em; } }
+@media (max-width: 640px) { .switcher { font-size: 0.54rem; letter-spacing: 0.1em; } .switcher a { padding: 0.75em 0.85em; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
