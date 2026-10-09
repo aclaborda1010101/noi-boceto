@@ -38,8 +38,8 @@
   content: "";
   position: absolute; inset: 0;
   background: var(--door-tint);
-  opacity: 0;
-  transition: opacity var(--dur-slow) var(--ease-out);
+  opacity: 1; /* sin ratón: las dos salas en penumbra para que el texto se lea */
+  transition: opacity 1400ms var(--ease-fade);
 }
 .door--verde { --door-tint: rgb(29 34 19 / 72%); }
 .door--rosso { --door-tint: rgb(58 11 14 / 72%); --door-accent: #f0b48c; }
@@ -66,16 +66,16 @@
     padding-top: calc(var(--header-h) + 1.5rem);
     pointer-events: none;
   }
-  .doors__brand .logo { pointer-events: auto; }
+  .doors__brand h1 { pointer-events: auto; }
   .door { min-height: 0; height: 100%; }
   .door + .door { border-left: 1px solid rgb(243 235 220 / 18%); }
   .door__content { padding-bottom: clamp(2.5rem, 2rem + 4vh, 5rem); max-width: 40rem; }
   .door--rosso .door__content { margin-left: auto; text-align: right; justify-items: end; }
   .door--rosso .door__awards, .door--rosso .door__actions { justify-content: flex-end; }
-  /* Hover: la sala elegida se acerca, la otra se apaga */
-  .doors:hover .door:not(:hover) .door__shade::after { opacity: 1; }
+  /* Encima de una sala: se aclara un poco (nunca del todo) y la foto se acerca */
+  .door:hover .door__shade::after,
+  .door:focus-within .door__shade::after { opacity: 0.45; }
   .door:hover .slides { transform: scale(1.05); }
-  .door:hover .door__shade { opacity: 0.85; }
 }
 
 /* ---------- Manifiesto ---------- */
