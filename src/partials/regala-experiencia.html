@@ -1,0 +1,117 @@
+<main class="gift" id="contenido">
+    <div class="gift__media">
+      <div class="slides" data-slides data-interval="6200" aria-hidden="true">
+        {{img noi-oct26-22 | | (min-width: 960px) 45vw, 100vw | class="is-active" loading="eager" fetchpriority="high"}}
+        {{img noi-web-15 | | (min-width: 960px) 45vw, 100vw}}
+        {{img noi-oct26-01 | | (min-width: 960px) 45vw, 100vw}}
+      </div>
+      <p class="gift__caption label">NOI Ristorante · Sala verde</p>
+    </div>
+
+    <div class="gift__panel">
+      <a class="gift__back label link-line" href="{{regala}}"><svg aria-hidden="true"><use href="#arrow"/></svg>Regala NOI</a>
+
+      <header style="display: grid; gap: 1rem;">
+        <p class="label gift__eyebrow">Regala una experiencia</p>
+        <h1 class="gift__title" data-gift-title>Menú <em>degustación</em></h1>
+        <p class="gift__lead" data-gift-lead>Una velada en la sala verde de NOI Ristorante con el menú degustación del chef Gianni Pinto. La persona que lo reciba elige el día y reserva cuando quiera.</p>
+      </header>
+
+      <form class="gift__form" data-gift-form novalidate style="display: grid; gap: 2rem;">
+        <fieldset class="gift__options">
+          <legend class="sr-only">Elige el regalo</legend>
+          <div class="gift-option">
+            <input type="radio" name="tipo" id="tipo-degustacion" value="degustacion" checked>
+            <label for="tipo-degustacion"><strong>Menú degustación</strong><span>NOI Ristorante</span></label>
+          </div>
+          <div class="gift-option">
+            <input type="radio" name="tipo" id="tipo-tarjeta" value="tarjeta">
+            <label for="tipo-tarjeta"><strong>Tarjeta regalo</strong><span>Ristorante o Bar e Cucina</span></label>
+          </div>
+        </fieldset>
+
+        <section class="gift__block" data-gift-panel="degustacion" aria-label="Menú degustación">
+          <h2>El menú</h2>
+          <ul class="gift__menu">
+            <li>Pizza margherita</li>
+            <li>Carpaccio di spigola e zucchine</li>
+            <li>Tonno tonnato</li>
+            <li>Parmigiana</li>
+            <li>Spaghetti e gamberi rossi</li>
+            <li>Pappardelle con ragù pugliese</li>
+            <li>Panna affumicata e fragole</li>
+            <li>Tortino al cioccolato</li>
+          </ul>
+          <span class="placeholder-note">Menú de la web actual · pendiente de actualizar con el nuevo</span>
+          <div class="field">
+            <span id="personas-label">Personas</span>
+            <div class="stepper" role="group" aria-labelledby="personas-label">
+              <button type="button" data-step="-1" aria-label="Una persona menos">−</button>
+              <output data-personas aria-live="polite">2</output>
+              <button type="button" data-step="1" aria-label="Una persona más">+</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="gift__block" data-gift-panel="tarjeta" aria-label="Tarjeta regalo" hidden>
+          <h2>Tarjeta regalo</h2>
+          <p class="gift__lead">Un importe para disfrutar en cualquiera de las dos salas de NOI: el Ristorante o Bar e Cucina.</p>
+          <fieldset class="field">
+            <legend>Importe</legend>
+            <div class="chips">
+              <div class="chip"><input type="radio" name="importe" id="imp-50" value="50"><label for="imp-50">50 €</label></div>
+              <div class="chip"><input type="radio" name="importe" id="imp-100" value="100" checked><label for="imp-100">100 €</label></div>
+              <div class="chip"><input type="radio" name="importe" id="imp-150" value="150"><label for="imp-150">150 €</label></div>
+              <div class="chip"><input type="radio" name="importe" id="imp-200" value="200"><label for="imp-200">200 €</label></div>
+            </div>
+            <span class="field__hint">Importes de ejemplo · pendiente de confirmar con NOI</span>
+          </fieldset>
+        </section>
+
+        <section class="gift__block" aria-label="Datos del regalo">
+          <h2>Para quién</h2>
+          <div class="field-row">
+            <label class="field"><span>Para</span><input type="text" name="para" placeholder="Nombre de quien lo recibe" autocomplete="off" data-gift-to></label>
+            <label class="field"><span>De parte de</span><input type="text" name="de" placeholder="Tu nombre" autocomplete="name"></label>
+          </div>
+          <label class="field"><span>Mensaje</span><textarea name="mensaje" maxlength="220" placeholder="Unas palabras para acompañar el regalo" data-gift-message></textarea><span class="field__hint"><span data-gift-count>0</span> / 220</span></label>
+          <fieldset class="field">
+            <legend>Entrega</legend>
+            <div class="radios">
+              <label class="radio"><input type="radio" name="entrega" value="email" checked data-gift-delivery> Por email a la persona que lo recibe</label>
+              <label class="radio"><input type="radio" name="entrega" value="mano" data-gift-delivery> A mi email, para entregarlo en mano</label>
+            </div>
+          </fieldset>
+          <div class="field-row">
+            <label class="field"><span data-gift-email-label>Email de quien lo recibe</span><input type="email" name="email" placeholder="nombre@email.com" autocomplete="off"></label>
+            <label class="field"><span>Fecha de envío</span><input type="date" name="fecha"></label>
+          </div>
+        </section>
+
+        <dl class="gift__summary" aria-live="polite">
+          <div><dt>Regalo</dt><dd data-sum-type>Menú degustación · NOI Ristorante</dd></div>
+          <div><dt data-sum-detail-label>Personas</dt><dd data-sum-detail>2</dd></div>
+          <div><dt>Para</dt><dd data-sum-to>—</dd></div>
+          <div><dt>Total</dt><dd data-sum-total>Precio por confirmar</dd></div>
+        </dl>
+
+        <div class="gift__actions">
+          <button class="btn btn--solid" type="submit"><span>Continuar al pago</span></button>
+          <span class="placeholder-note">Vista previa · tienda y pago en desarrollo</span>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <dialog class="sheet sheet--note" id="gift-preview" aria-labelledby="gift-preview-title">
+    <div class="sheet__head">
+      <span class="label">Regala NOI</span>
+      <button class="sheet__close" type="button" data-sheet-close aria-label="Cerrar">×</button>
+    </div>
+    <div class="sheet__body" data-lenis-prevent>
+      <p class="label" style="color: var(--rosso)">Vista previa</p>
+      <h2 id="gift-preview-title">La compra online <em>llegará pronto</em></h2>
+      <p>Aquí se conectará la tienda y la pasarela de pago. En esta versión no se envía ni se guarda ningún dato.</p>
+      <button class="btn" style="--fg: var(--ink); --bg: var(--marmo)" type="button" data-sheet-close><span>Entendido</span></button>
+    </div>
+  </dialog>

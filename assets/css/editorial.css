@@ -145,35 +145,59 @@
 }
 .chef__name { font-size: var(--text-h2); font-weight: 300; line-height: 0.95; }
 
-/* ---------- Reservas: elegir sala ---------- */
+/* ---------- Reservas: lista fina con las dos salas ---------- */
 .reserve { padding: var(--space-section) var(--gutter); background: var(--crema); color: var(--ink); }
 .reserve__head { display: grid; gap: 1rem; justify-items: center; text-align: center; margin-bottom: clamp(2.5rem, 2rem + 3vw, 4.5rem); }
 .reserve__title { font-size: var(--text-h2); font-weight: 300; line-height: 0.95; }
 .reserve__title em { font-style: italic; color: var(--rosso); }
-.reserve__grid { display: grid; gap: 0.8rem; }
-@media (min-width: 800px) { .reserve__grid { grid-template-columns: 1fr 1fr; } }
-.reserve-card {
+.reserve-list { max-width: 60rem; margin-inline: auto; border-top: 1px solid rgb(28 19 17 / 18%); }
+.reserve-list li { border-bottom: 1px solid rgb(28 19 17 / 18%); }
+.reserve-row {
   position: relative;
-  min-height: clamp(26rem, 20rem + 18vw, 38rem);
-  display: flex; flex-direction: column; justify-content: flex-end; gap: 0.7rem;
-  padding: clamp(1.6rem, 1rem + 2vw, 3rem);
-  color: var(--crema);
-  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "name cta" "meta cta";
+  align-items: center;
+  gap: 0.3rem 1.5rem;
+  padding: 1.6rem 0.4rem;
   isolation: isolate;
 }
-/* Tarjetas de color de cada sala (sin foto: las fotos ya aparecen arriba) */
-.reserve-card { min-height: clamp(18rem, 14rem + 10vw, 24rem); background: var(--card-bg); transition: background-color var(--dur-slow) var(--ease-fade); }
-.reserve-card::before {
+.reserve-row::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
-  background: radial-gradient(90% 80% at 100% 0%, rgb(243 235 220 / 10%), transparent 70%);
-  opacity: 0; transition: opacity var(--dur-slow) var(--ease-fade);
+  background: var(--row-tint);
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-fade);
 }
-.reserve-card:hover::before { opacity: 1; }
-.reserve-card--verde { --card-bg: var(--verde-scuro); }
-.reserve-card--rosso { --card-bg: var(--rosso); }
-.reserve-card__title { font-size: var(--text-h3); font-weight: 300; line-height: 1; }
-.reserve-card__cta { display: inline-flex; gap: 0.8rem; align-items: center; margin-top: 0.6rem; }
-.reserve-card__cta::after { content: "→"; font-family: var(--font-serif); font-size: 1.3rem; transition: transform var(--dur) var(--ease-out); }
-.reserve-card:hover .reserve-card__cta::after { transform: translateX(0.4rem); }
+.reserve-row--verde { --row-tint: rgb(42 49 25 / 8%); --row-accent: var(--verde-scuro); }
+.reserve-row--rosso { --row-tint: rgb(156 28 31 / 7%); --row-accent: var(--rosso); }
+.reserve-row:hover::before { opacity: 1; }
+.reserve-row__name { grid-area: name; font-size: clamp(1.7rem, 1.3rem + 1.6vw, 2.6rem); font-weight: 300; line-height: 1.05; color: var(--row-accent); }
+.reserve-row__meta { grid-area: meta; color: rgb(28 19 17 / 60%); }
+.reserve-row__cta { grid-area: cta; display: inline-flex; align-items: center; gap: 0.6rem; }
+.reserve-row__cta svg { width: 1.1rem; height: 1.1rem; transition: transform var(--dur) var(--ease-out); }
+.reserve-row:hover .reserve-row__cta svg { transform: translateX(0.35rem); }
+@media (min-width: 800px) {
+  .reserve-row { grid-template-columns: 1fr 1fr auto; grid-template-areas: "name meta cta"; padding-block: 2rem; }
+}
 .reserve__note { margin-top: 2rem; text-align: center; color: rgb(28 19 17 / 70%); }
 .reserve__note a { border-bottom: 1px solid currentColor; }
+
+/* ---------- Móvil: las dos salas en la misma pantalla, como en escritorio ---------- */
+@media (max-width: 899px) {
+  .doors { height: 100svh; min-height: 560px; grid-template-rows: 1fr 1fr; }
+  .doors__brand { display: none; }
+  .door { min-height: 0; }
+  .door + .door { border-top: 1px solid rgb(243 235 220 / 18%); }
+  .door__content { padding: 0 var(--gutter) 1.3rem; gap: 0.45rem; }
+  .door--verde .door__content { padding-top: var(--header-h); }
+  .door--rosso .door__content { padding-bottom: 4.4rem; } /* sitio para el selector de propuestas */
+  .door__title { font-size: clamp(2.3rem, 1.6rem + 6vw, 3.2rem); }
+  .door__title small { font-size: 0.3em; margin-bottom: 0.4em; }
+  .door__line { display: none; }
+  .door__awards { font-size: 0.6rem; gap: 0.2rem 1rem; padding-top: 0; }
+  .door__actions { padding-top: 0.35rem; gap: 0.5rem; }
+  .door__actions .btn { padding: 0.85em 1.3em; }
+  .door .door__shade { --corner: 0% 100%; }
+  /* En móvil el logo va pequeño en la cabecera desde el principio */
+  .header--home:not(.is-solid) .header__logo { opacity: 1; transform: none; pointer-events: auto; }
+}

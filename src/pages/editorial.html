@@ -84,8 +84,7 @@
     <!-- Fotos grandes, sin texto, que se cortan unas a otras al hacer scroll -->
     <section class="cuts" data-cuts aria-label="Los espacios de NOI">
       <div class="cuts__sticky">
-        <figure class="cut" data-label="La sala — Ristorante">{{img noi-oct26-17 | La sala del Ristorante preparada para el servicio | 100vw}}</figure>
-        <figure class="cut cut--pair" data-cut="center-v" data-label="Sala roja — Bar e Cucina">
+        <figure class="cut cut--pair" data-label="Sala roja — Bar e Cucina">
           {{img noi-web-16 | Mesas de mármol en la sala roja con la bodega al fondo | (min-width: 800px) 50vw, 100vw}}
           {{img noi-oct26-23 | Lámparas rojas y latón | 50vw}}
         </figure>
@@ -95,9 +94,9 @@
           {{img noi-oct26-21 | Cubiertos sobre mármol | 50vw}}
         </figure>
         <div class="cuts__caption label">
-          <span><span data-cuts-index>01</span> / 04</span>
+          <span><span data-cuts-index>01</span> / 03</span>
           <span class="cuts__progress" aria-hidden="true"><span data-cuts-bar></span></span>
-          <span data-cuts-label>La sala — Ristorante</span>
+          <span data-cuts-label>Sala roja — Bar e Cucina</span>
         </div>
       </div>
     </section>
@@ -167,20 +166,18 @@
         <h2 class="reserve__title reveal" id="reserve-heading" data-delay="1">Dos salas, <em>una mesa para ti</em></h2>
         <p class="reveal" data-delay="2">Elige dónde quieres sentarte y consulta la disponibilidad al momento.</p>
       </div>
-      <div class="reserve__grid">
-        <a class="reserve-card reserve-card--verde reveal" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150509" target="_blank" rel="noopener" data-reserve="ristorante">
-          <span class="label">Sala verde · Gastronómico</span>
-          <span class="reserve-card__title">NOI Ristorante</span>
-          <span>Cocina italiana contemporánea. Técnica, creatividad y sorpresa.</span>
-          <span class="reserve-card__cta label">Reservar en el Ristorante</span>
-        </a>
-        <a class="reserve-card reserve-card--rosso reveal" data-delay="1" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150506" target="_blank" rel="noopener" data-reserve="bar">
-          <span class="label">La barra · Cocina de siempre</span>
-          <span class="reserve-card__title">NOI Bar e Cucina</span>
-          <span>Cocina italiana auténtica, generosa y sin artificios. Para compartir.</span>
-          <span class="reserve-card__cta label">Reservar en Bar e Cucina</span>
-        </a>
-      </div>
+      <ul class="reserve-list">
+        <li><a class="reserve-row reserve-row--verde" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150509" target="_blank" rel="noopener" data-reserve="ristorante">
+          <span class="reserve-row__name">NOI Ristorante</span>
+          <span class="reserve-row__meta label">Sala verde · Alta cocina italiana</span>
+          <span class="reserve-row__cta label">Reservar <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+        </a></li>
+        <li><a class="reserve-row reserve-row--rosso" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150506" target="_blank" rel="noopener" data-reserve="bar">
+          <span class="reserve-row__name">NOI Bar e Cucina</span>
+          <span class="reserve-row__meta label">La barra · Cocina de siempre</span>
+          <span class="reserve-row__cta label">Reservar <svg aria-hidden="true"><use href="#arrow"/></svg></span>
+        </a></li>
+      </ul>
       <p class="reserve__note">¿Grupos, eventos o una petición especial? Llámanos al <a href="tel:+34910694007">910 694 007</a> o escribe a <a href="mailto:info@restaurantenoi.com">info@restaurantenoi.com</a></p>
     </section>
   </main>

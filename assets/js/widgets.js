@@ -285,7 +285,7 @@
       });
     });
     document.querySelectorAll("dialog.sheet").forEach((sheet) => {
-      sheet.querySelector("[data-sheet-close]")?.addEventListener("click", () => sheet.close());
+      sheet.querySelectorAll("[data-sheet-close]").forEach((button) => button.addEventListener("click", () => sheet.close()));
       sheet.addEventListener("click", (event) => { if (event.target === sheet) sheet.close(); });
       sheet.addEventListener("close", () => NOI.lockScroll(false));
     });
