@@ -22,7 +22,7 @@
   color: var(--crema);
   isolation: isolate;
 }
-.door .slides { z-index: -2; transition: transform 1.8s var(--ease-out); }
+.door .slides { z-index: -2; transition: transform 4200ms var(--ease-fade); }
 /* Velo fijo en la esquina del texto: verde en el Ristorante, rojo en Bar e Cucina */
 .door__shade {
   position: absolute; inset: 0; z-index: -1;
@@ -38,8 +38,17 @@
   content: "";
   position: absolute; inset: 0;
   background: var(--door-tint);
-  opacity: 1; /* sin ratón: las dos salas en penumbra para que el texto se lea */
-  transition: opacity 1400ms var(--ease-fade);
+  opacity: 0.78; /* sin ratón: penumbra, pero con color */
+  transition: opacity 2200ms var(--ease-fade);
+}
+/* Desenfoque suave solo detrás del texto: se difumina hacia el resto de la foto */
+.door__shade::before {
+  content: "";
+  position: absolute; inset: 0;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  -webkit-mask-image: radial-gradient(120% 70% at var(--corner, 0% 100%), #000 0%, rgb(0 0 0 / 65%) 35%, transparent 70%);
+  mask-image: radial-gradient(120% 70% at var(--corner, 0% 100%), #000 0%, rgb(0 0 0 / 65%) 35%, transparent 70%);
 }
 .door--verde { --door-tint: rgb(29 34 19 / 72%); }
 .door--rosso { --door-tint: rgb(58 11 14 / 72%); --door-accent: #f0b48c; }
@@ -74,8 +83,8 @@
   .door--rosso .door__awards, .door--rosso .door__actions { justify-content: flex-end; }
   /* Encima de una sala: se aclara un poco (nunca del todo) y la foto se acerca */
   .door:hover .door__shade::after,
-  .door:focus-within .door__shade::after { opacity: 0.45; }
-  .door:hover .slides { transform: scale(1.05); }
+  .door:focus-within .door__shade::after { opacity: 0.25; }
+  .door:hover .slides { transform: scale(1.035); }
 }
 
 /* ---------- Manifiesto ---------- */
