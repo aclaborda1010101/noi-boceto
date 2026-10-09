@@ -114,3 +114,6 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .gift__summary dd { text-align: right; }
 .gift__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.4rem; }
 .gift__actions .placeholder-note { margin: 0; }
+
+/* Barra superior sólida en esta página: el formulario pasa por debajo al hacer scroll */
+.page-gift .topbar { background: rgb(58 11 14 / 88%); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid rgb(243 235 220 / 10%); }

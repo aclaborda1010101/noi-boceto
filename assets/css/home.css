@@ -196,11 +196,6 @@
 .solo__note { color: rgb(243 235 220 / 70%); font-size: var(--text-small); }
 .solo .placeholder-note { color: var(--crema); }
 
-/* Hoja del menú degustación pendiente */
-.sheet--note { height: auto; width: min(100% - 1.5rem, 640px); }
-.sheet--note .sheet__body { padding: clamp(2rem, 1.5rem + 3vw, 4rem); display: grid; gap: 1.2rem; justify-items: center; text-align: center; }
-.sheet--note h2 { font-size: var(--text-h3); font-weight: 300; line-height: 1.05; }
-.sheet--note h2 em { font-style: italic; color: var(--verde-scuro); }
 
 @media (max-width: 640px) { .page-home .home__caption { display: none; } }
 

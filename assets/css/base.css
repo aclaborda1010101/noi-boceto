@@ -452,6 +452,13 @@ ul, ol { padding: 0; list-style: none; }
 .sheet__close { width: 2.6rem; height: 2.6rem; display: grid; place-items: center; font-size: 1.7rem; line-height: 1; }
 .sheet__body { overflow-y: auto; overscroll-behavior: contain; }
 
+/* Hoja de aviso (menú degustación pendiente, vista previa de compra) */
+.sheet--note { height: fit-content; width: min(100% - 1.5rem, 640px); }
+.sheet--note[open] { grid-template-rows: auto auto; }
+.sheet--note .sheet__body { padding: clamp(2rem, 1.5rem + 3vw, 4rem); display: grid; gap: 1.2rem; justify-items: center; text-align: center; }
+.sheet--note h2 { font-size: var(--text-h3); font-weight: 300; line-height: 1.05; }
+.sheet--note h2 em { font-style: italic; color: var(--verde-scuro); }
+
 /* ---------- Barra superior mínima (páginas de la propuesta sencilla) ---------- */
 .topbar {
   position: fixed; inset: 0 0 auto; z-index: 30;
