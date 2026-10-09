@@ -1,7 +1,7 @@
 /* NOI — home: una pantalla, logo + iconos sobre las fotos de las dos salas */
 
-@property --tint-a { syntax: "<color>"; inherits: true; initial-value: rgb(42 8 10 / 52%); }
-@property --tint-b { syntax: "<color>"; inherits: true; initial-value: rgb(30 6 8 / 84%); }
+@property --tint-a { syntax: "<color>"; inherits: true; initial-value: rgb(42 8 10 / 64%); }
+@property --tint-b { syntax: "<color>"; inherits: true; initial-value: rgb(30 6 8 / 88%); }
 
 .home {
   position: relative;
@@ -11,12 +11,12 @@
   color: var(--crema);
   isolation: isolate;
   overflow: hidden;
-  --tint-a: rgb(42 8 10 / 52%);
-  --tint-b: rgb(30 6 8 / 84%);
+  --tint-a: rgb(42 8 10 / 64%);
+  --tint-b: rgb(30 6 8 / 88%);
   transition: --tint-a 1400ms var(--ease-out), --tint-b 1400ms var(--ease-out);
 }
-.home[data-set="verde"] { --tint-a: rgb(24 30 14 / 50%); --tint-b: rgb(16 20 9 / 86%); }
-.home[data-set="rosso"] { --tint-a: rgb(80 14 16 / 48%); --tint-b: rgb(44 8 10 / 86%); }
+.home[data-set="verde"] { --tint-a: rgb(24 30 14 / 62%); --tint-b: rgb(16 20 9 / 88%); }
+.home[data-set="rosso"] { --tint-a: rgb(80 14 16 / 60%); --tint-b: rgb(44 8 10 / 88%); }
 
 .home__stage { position: fixed; z-index: -2; }
 
@@ -26,7 +26,17 @@
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(ellipse 70% 62% at 50% 46%, var(--tint-b) 0%, var(--tint-a) 62%, rgb(20 6 6 / 35%) 100%);
+    radial-gradient(ellipse 72% 64% at 50% 46%, var(--tint-b) 0%, var(--tint-a) 62%, rgb(20 6 6 / 50%) 100%);
+}
+/* Desenfoque suave solo en el centro, donde va el contenido; los bordes siguen nítidos */
+.home__tint::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  -webkit-backdrop-filter: blur(7px) saturate(0.9);
+  backdrop-filter: blur(7px) saturate(0.9);
+  -webkit-mask-image: radial-gradient(ellipse 60% 56% at 50% 47%, #000 35%, transparent 82%);
+  mask-image: radial-gradient(ellipse 60% 56% at 50% 47%, #000 35%, transparent 82%);
 }
 
 .home__inner {
