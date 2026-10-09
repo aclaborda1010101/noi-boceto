@@ -14,9 +14,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@400;500&display=swap">
-  <link rel="stylesheet" href="assets/css/base.css?v=mv18k1go">
-  <link rel="stylesheet" href="assets/css/sections.css?v=mv18k1go">
-  <link rel="stylesheet" href="assets/css/sala.css?v=mv18k1go">
+  <link rel="stylesheet" href="assets/css/base.css?v=mv18qijp">
+  <link rel="stylesheet" href="assets/css/sections.css?v=mv18qijp">
+  <link rel="stylesheet" href="assets/css/sala.css?v=mv18qijp">
   <script>
     /* Estado antes del primer pintado: evita parpadeos de la cortina y del loader */
     (function () {
@@ -57,7 +57,7 @@
     </div>
   </header>
 
-  <div class="menu" id="menu" data-menu inert>
+  <div class="menu" id="menu" data-menu data-lenis-prevent inert>
     <nav class="menu__nav" aria-label="Principal">
       <ol class="menu__list">
         <li class="menu__item"><a class="menu__link" href="editorial.html" data-media="0"><small>01</small>Inicio</a></li>
@@ -250,7 +250,7 @@
     </div>
   </footer>
 
-  <dialog class="reserve-modal" data-reserve-modal aria-labelledby="reserve-modal-title">
+  <dialog class="reserve-modal" data-reserve-modal data-lenis-prevent aria-labelledby="reserve-modal-title">
     <div class="reserve-modal__head">
       <p class="reserve-modal__title" id="reserve-modal-title">Reservar en NOI</p>
       <button class="reserve-modal__close" type="button" data-reserve-close aria-label="Cerrar reservas">×</button>
@@ -273,8 +273,8 @@
   </dialog>
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
-  <script src="assets/js/core.js?v=mv18k1go" defer></script>
-  <script src="assets/js/widgets.js?v=mv18k1go" defer></script>
+  <script src="assets/js/core.js?v=mv18qijp" defer></script>
+  <script src="assets/js/widgets.js?v=mv18qijp" defer></script>
 
 </body>
 </html>

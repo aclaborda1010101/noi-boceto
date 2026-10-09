@@ -24,7 +24,7 @@
     <section class="sala-hero" data-header-trigger aria-labelledby="sala-title">
       <div class="slides" data-slides data-interval="6000">
         {{img noi-web-03 | La sala verde del Ristorante con techo de lunares y espejos ovalados | 100vw | class="is-active" loading="eager" fetchpriority="high"}}
-        {{img noi-oct26-17 | La sala del Ristorante preparada para el servicio | 100vw}}
+        {{img noi-oct26-01 | Mesa redonda vestida de blanco en la sala verde | 100vw}}
       </div>
       <div class="sala-hero__content">
         <p class="label">Sala verde · Recoletos 6</p>
@@ -50,24 +50,15 @@
     <!-- Fotos grandes, sin texto, que se cortan al hacer scroll -->
     <section class="cuts" data-cuts aria-label="La sala verde">
       <div class="cuts__sticky">
-        <figure class="cut cut--pair" data-label="La mesa">
-          {{img noi-oct26-01 | Mesa redonda con lámpara de cristal | (min-width: 800px) 50vw, 100vw}}
+        <figure class="cut" data-label="La sala">{{img noi-oct26-17 | La sala del Ristorante preparada para el servicio | 100vw}}</figure>
+        <figure class="cut cut--pair" data-cut="center-v" data-label="La mesa">
+          {{img noi-web-15 | Mesa vestida de blanco junto a la pared verde | (min-width: 800px) 50vw, 100vw}}
           {{img noi-oct26-22 | Copas sobre mantel blanco | 50vw}}
         </figure>
-        <figure class="cut cut--pair" data-cut="center-v" data-label="La sala">
-          {{img noi-web-15 | Mesa vestida de blanco junto a la pared verde | (min-width: 800px) 50vw, 100vw}}
-          {{img noi-oct26-19 | Servicio de vino frente a la bodega | 50vw}}
-        </figure>
-        <figure class="cut" data-cut="diagonal" data-label="Chef Gianni Pinto">
-          <picture>
-            <source media="(max-width: 799px)" srcset="assets/img/noi-oct26-24-1200.webp 800w, assets/img/noi-oct26-24-2400.webp 1600w" sizes="100vw" width="800" height="1200">
-            {{img noi-oct26-25 | El chef Gianni Pinto frente a la bodega | 100vw}}
-          </picture>
-        </figure>
         <div class="cuts__caption label">
-          <span><span data-cuts-index>01</span> / 03</span>
+          <span><span data-cuts-index>01</span> / 02</span>
           <span class="cuts__progress" aria-hidden="true"><span data-cuts-bar></span></span>
-          <span data-cuts-label>La mesa</span>
+          <span data-cuts-label>La sala</span>
         </div>
       </div>
     </section>

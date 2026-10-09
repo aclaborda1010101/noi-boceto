@@ -50,6 +50,7 @@
   }
 
   /* ---------- Escenario de la home: fotos de las dos salas fundiéndose ---------- */
+  const QUICK_FADE_MS = 1300;
   const FILTER_LEAVE_DELAY = 450;
 
   function initStage(stage) {
@@ -62,7 +63,6 @@
     const bar = document.querySelector("[data-stage-bar]");
     let index = 0;
     let filter = null;
-    let busyUntil = 0;
     let timer = null;
     let leaveTimer = null;
 
@@ -86,8 +86,9 @@
       return index;
     };
 
-    const goTo = (target) => {
+    const goTo = (target, fadeMs = FADE_MS) => {
       if (target === index) return;
+      stage.style.setProperty("--fade-ms", `${fadeMs}ms`);
       const prev = images[index];
       const next = images[target];
       index = target;
@@ -95,11 +96,10 @@
       prev.classList.add("is-prev");
       next.classList.remove("is-prev");
       next.classList.add("is-active", "is-entering");
-      busyUntil = performance.now() + FADE_MS;
       setTimeout(() => {
         prev.classList.remove("is-prev");
         next.classList.remove("is-entering");
-      }, FADE_MS);
+      }, fadeMs);
       updateMeta();
     };
 
@@ -117,10 +117,9 @@
       if (filter === value) return;
       filter = value;
       if (value) home.dataset.set = value; else delete home.dataset.set;
-      const needsCut = value && images[index].dataset.set !== value;
-      if (!needsCut) { start(); return; }
-      const wait = Math.max(0, busyUntil - performance.now());
-      setTimeout(() => { goTo(nextIndex()); start(); }, wait);
+      // Al elegir sala, cambia ya a una foto de esa sala; después solo pasan fotos suyas
+      if (value && images[index].dataset.set !== value) goTo(nextIndex(), QUICK_FADE_MS);
+      start();
     };
 
     document.querySelectorAll("[data-stage-filter]").forEach((link) => {
