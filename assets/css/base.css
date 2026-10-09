@@ -413,7 +413,6 @@ ul, ol { padding: 0; list-style: none; }
 }
 .footer__logo { display: block; width: clamp(9rem, 7rem + 5vw, 12rem); }
 .footer__contact { font-style: normal; display: grid; gap: 0.25rem; justify-items: center; color: rgb(243 235 220 / 88%); }
-.footer__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem 1.5rem; max-width: 34rem; }
 .footer__legal { color: rgb(243 235 220 / 55%); font-size: 0.62rem; }
 .footer__legal a { color: inherit; }
 .placeholder-note {
