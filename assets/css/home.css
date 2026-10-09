@@ -1,0 +1,143 @@
+/* NOI — home: una pantalla, logo + iconos sobre las fotos de las dos salas */
+
+@property --tint-a { syntax: "<color>"; inherits: true; initial-value: rgb(42 8 10 / 52%); }
+@property --tint-b { syntax: "<color>"; inherits: true; initial-value: rgb(30 6 8 / 84%); }
+
+.home {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  color: var(--crema);
+  isolation: isolate;
+  overflow: hidden;
+  --tint-a: rgb(42 8 10 / 52%);
+  --tint-b: rgb(30 6 8 / 84%);
+  transition: --tint-a 1400ms var(--ease-out), --tint-b 1400ms var(--ease-out);
+}
+.home[data-set="verde"] { --tint-a: rgb(24 30 14 / 50%); --tint-b: rgb(16 20 9 / 86%); }
+.home[data-set="rosso"] { --tint-a: rgb(80 14 16 / 48%); --tint-b: rgb(44 8 10 / 86%); }
+
+.home__stage { position: fixed; z-index: -2; }
+
+/* Velo: centro más oscuro para que el logo respire; cambia de color según la sala */
+.home__tint {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 70% 62% at 50% 46%, var(--tint-b) 0%, var(--tint-a) 62%, rgb(20 6 6 / 35%) 100%);
+}
+
+.home__inner {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  gap: clamp(2.2rem, 1rem + 4.2vh, 4.4rem);
+  padding: clamp(4.5rem, 3rem + 6vh, 7rem) var(--gutter) clamp(5.5rem, 4rem + 6vh, 7.5rem);
+  text-align: center;
+}
+.home__logo { margin: 0; font-weight: 400; }
+
+/* Entrada escalonada (tras el loader o la cortina) */
+.js .home__inner > * { opacity: 0; transform: translateY(1rem); transition: opacity 1200ms var(--ease-out), transform 1200ms var(--ease-out); }
+.js .home.is-ready .home__inner > * { opacity: 1; transform: none; }
+.js .home.is-ready .home__inner > :nth-child(2) { transition-delay: 180ms; }
+.js .home.is-ready .home__inner > :nth-child(3) { transition-delay: 320ms; }
+.js .home.is-ready .home__inner > :nth-child(4) { transition-delay: 440ms; }
+.js .home__caption { opacity: 0; transition: opacity 1200ms var(--ease-out) 600ms; }
+.js .home.is-ready .home__caption { opacity: 1; }
+
+/* ---------- Iconos ---------- */
+.icons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 7rem));
+  gap: 1.8rem clamp(0.8rem, 0.4rem + 2vw, 2.4rem);
+  justify-content: center;
+}
+@media (min-width: 760px) { .icons { grid-template-columns: repeat(6, minmax(0, 7.5rem)); } }
+.icon-link {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.85rem;
+  padding: 0.4rem 0.2rem 0.7rem;
+  color: var(--crema);
+  transition: color var(--dur) var(--ease-out);
+}
+.icon-link svg {
+  width: clamp(2.3rem, 1.9rem + 1.3vw, 3.4rem);
+  height: auto;
+  aspect-ratio: 1;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--dur) var(--ease-out);
+}
+.icon-link svg .fill { fill: currentColor; stroke: none; }
+.icon-link span {
+  font-size: clamp(0.95rem, 0.88rem + 0.3vw, 1.12rem);
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+.icon-link::after {
+  content: "";
+  position: absolute; left: 30%; right: 30%; bottom: 0;
+  height: 1px; background: var(--ottone);
+  transform: scaleX(0);
+  transition: transform var(--dur) var(--ease-out);
+}
+.icon-link:hover, .icon-link:focus-visible { color: var(--ottone); }
+.icon-link:hover svg, .icon-link:focus-visible svg { transform: translateY(-0.3rem); }
+.icon-link:hover::after, .icon-link:focus-visible::after { transform: scaleX(1); }
+.icon-link:active svg { transform: translateY(-0.1rem) scale(0.96); }
+.icon-link:focus-visible { outline-offset: 0.4rem; }
+@media (max-width: 420px) { .icon-link span { white-space: normal; } }
+
+/* ---------- Premios ---------- */
+.home__awards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.6rem, 1rem + 3vw, 3.5rem);
+}
+.home__awards li:not(.home__awards-rule) { display: grid; gap: 0.15rem; justify-items: center; }
+.home__award-name { font-size: 1.15rem; line-height: 1.2; }
+.home__award-name.spaced { letter-spacing: 0.32em; margin-right: -0.32em; font-size: 1rem; }
+.home__award-name em { font-size: 1.3rem; }
+.home__awards li span:last-child:not(.home__award-name) { font-size: 0.95rem; color: rgb(243 235 220 / 80%); }
+.home__awards-rule { width: 1px; height: 3.2rem; background: rgb(243 235 220 / 35%); }
+
+/* ---------- Contacto ---------- */
+.home__contact {
+  font-style: normal;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem 0.9rem;
+  font-size: clamp(0.98rem, 0.92rem + 0.25vw, 1.1rem);
+  color: rgb(243 235 220 / 88%);
+}
+@media (max-width: 640px) {
+  .home__contact { flex-direction: column; align-items: center; }
+  .home__contact > span { display: none; }
+}
+
+/* ---------- Pie: sala actual + contador ---------- */
+.home__caption {
+  position: absolute;
+  left: var(--gutter); right: var(--gutter); bottom: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  color: rgb(243 235 220 / 85%);
+}
+.home__counter { display: inline-flex; align-items: center; gap: 0.5rem; }
+.home__progress { position: relative; width: 4.5rem; height: 1px; margin-left: 0.6rem; background: rgb(243 235 220 / 30%); overflow: hidden; }
+.home__progress span { position: absolute; inset: 0; background: var(--crema); transform-origin: left; transform: scaleX(0); }
+.home__progress span.is-running { transform: scaleX(1); transition: transform var(--stage-interval, 5600ms) linear; }
+@media (max-width: 640px) { .home__caption { font-size: 0.62rem; letter-spacing: 0.2em; } }

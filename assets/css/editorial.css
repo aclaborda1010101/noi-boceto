@@ -1,0 +1,172 @@
+/* NOI — Propuesta 2 (editorial): puertas, manifiesto, features, chef y reservas */
+
+/* ---------- Las dos puertas ---------- */
+.doors {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  background: var(--oxblood);
+}
+.doors__brand {
+  display: grid;
+  place-items: center;
+  padding: calc(var(--header-h) + 2.5rem) var(--gutter) 2.5rem;
+  color: var(--crema);
+}
+.door {
+  position: relative;
+  min-height: 78svh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  color: var(--crema);
+  isolation: isolate;
+}
+.door .slides { z-index: -2; transition: transform 1.8s var(--ease-out); }
+.door__shade {
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgb(20 10 8 / 25%) 0%, rgb(20 10 8 / 10%) 35%, rgb(20 10 8 / 78%) 100%);
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+.door__shade::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--door-tint);
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+.door--verde { --door-tint: rgb(29 34 19 / 72%); }
+.door--rosso { --door-tint: rgb(58 11 14 / 72%); --door-accent: #f0b48c; }
+.door__content {
+  width: 100%;
+  padding: 2.2rem var(--gutter) clamp(2.2rem, 1.5rem + 3vh, 4rem);
+  display: grid;
+  gap: 1rem;
+}
+.door__eyebrow { color: var(--door-accent, var(--ottone)); }
+.door__title { font-size: var(--text-hero); font-weight: 300; line-height: 0.9; }
+.door__title small { display: block; font-size: 0.24em; letter-spacing: 0.55em; margin-bottom: 0.5em; font-weight: 400; }
+.door--verde .door__title { letter-spacing: 0.04em; }
+.door__line { max-width: 30rem; color: rgb(243 235 220 / 86%); }
+.door__awards { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; padding-top: 0.2rem; }
+.door__awards li { display: inline-flex; align-items: center; gap: 0.55rem; }
+.door__awards svg { width: 1.05rem; height: 1.05rem; color: var(--ottone); }
+.door__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; padding-top: 0.6rem; }
+
+@media (min-width: 900px) {
+  .doors { grid-template-columns: 1fr 1fr; height: 100svh; min-height: 640px; }
+  .doors__brand {
+    position: absolute; inset: 0 0 auto; z-index: 5;
+    padding-top: calc(var(--header-h) + 1.5rem);
+    pointer-events: none;
+  }
+  .doors__brand .logo { pointer-events: auto; }
+  .door { min-height: 0; height: 100%; }
+  .door + .door { border-left: 1px solid rgb(243 235 220 / 18%); }
+  .door__content { padding-bottom: clamp(2.5rem, 2rem + 4vh, 5rem); max-width: 40rem; }
+  .door--rosso .door__content { margin-left: auto; text-align: right; justify-items: end; }
+  .door--rosso .door__awards, .door--rosso .door__actions { justify-content: flex-end; }
+  /* Hover: la sala elegida se acerca, la otra se apaga */
+  .doors:hover .door:not(:hover) .door__shade::after { opacity: 1; }
+  .door:hover .slides { transform: scale(1.05); }
+  .door:hover .door__shade { opacity: 0.75; }
+}
+
+/* ---------- Manifiesto ---------- */
+.manifesto { padding: var(--space-section) var(--gutter); background: var(--crema); color: var(--ink); text-align: center; }
+.manifesto__inner { max-width: 62rem; margin-inline: auto; display: grid; gap: 2rem; justify-items: center; }
+.manifesto__eyebrow { color: var(--rosso); }
+.manifesto__text { font-size: clamp(1.9rem, 1.2rem + 2.8vw, 3.9rem); font-weight: 300; line-height: 1.12; }
+.manifesto__text em { color: var(--rosso); }
+.manifesto__sign { color: rgb(28 19 17 / 70%); font-style: italic; }
+
+/* ---------- Feature de cada sala ---------- */
+.feature {
+  padding: var(--space-section) var(--gutter);
+  background: var(--bg);
+  color: var(--fg);
+  display: grid;
+  gap: 3rem var(--gutter);
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center;
+}
+.feature__media { grid-column: 1 / -1; position: relative; }
+.feature__main { aspect-ratio: 4 / 5; overflow: hidden; }
+.feature__main img, .feature__sub img { width: 100%; height: 100%; object-fit: cover; }
+.feature__sub {
+  position: absolute;
+  width: 42%;
+  aspect-ratio: 3 / 4;
+  right: -0.5rem; bottom: -12%;
+  overflow: hidden;
+  box-shadow: 0 2rem 4rem -1rem rgb(0 0 0 / 45%);
+  outline: 0.6rem solid var(--bg);
+}
+.feature__text { grid-column: 1 / -1; display: grid; gap: 1.5rem; padding-top: 3rem; }
+.feature__eyebrow { color: var(--accent); }
+.feature__title { font-size: var(--text-h2); font-weight: 300; line-height: 0.95; }
+.feature__title em { font-style: italic; }
+.feature__body { color: var(--fg-soft); max-width: 34rem; }
+.feature__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; padding-top: 0.5rem; }
+.feature__awards {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 12rem)); gap: 1rem;
+  padding-block: 1.2rem; border-block: 1px solid var(--line);
+}
+.feature__awards li { display: grid; gap: 0.2rem; }
+.feature__awards strong { font-weight: 400; font-size: 1.35rem; line-height: 1.1; }
+.feature__awards svg { width: 1.6rem; height: 1.6rem; color: var(--accent); margin-bottom: 0.3rem; }
+@media (min-width: 900px) {
+  .feature { grid-template-columns: repeat(12, 1fr); }
+  .feature__media { grid-column: 1 / span 6; }
+  .feature__text { grid-column: 8 / span 5; padding-top: 0; }
+  .feature--flip .feature__media { grid-column: 7 / span 6; grid-row: 1; }
+  .feature--flip .feature__text { grid-column: 1 / span 5; grid-row: 1; }
+  .feature--flip .feature__sub { right: auto; left: -12%; }
+  .feature__sub { right: -14%; }
+}
+
+/* ---------- Chef ---------- */
+.chef { position: relative; background: var(--ink); color: var(--crema); }
+.chef__media { position: relative; height: 92svh; min-height: 520px; overflow: hidden; }
+.chef__media img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 30%; }
+.chef__media::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgb(20 10 8 / 70%) 0%, rgb(20 10 8 / 0%) 55%);
+}
+.chef__caption {
+  position: absolute; z-index: 1; left: var(--gutter); bottom: clamp(2rem, 1rem + 4vh, 4.5rem);
+  display: grid; gap: 0.8rem; max-width: 30rem;
+}
+.chef__name { font-size: var(--text-h2); font-weight: 300; line-height: 0.95; }
+
+/* ---------- Reservas: elegir sala ---------- */
+.reserve { padding: var(--space-section) var(--gutter); background: var(--crema); color: var(--ink); }
+.reserve__head { display: grid; gap: 1rem; justify-items: center; text-align: center; margin-bottom: clamp(2.5rem, 2rem + 3vw, 4.5rem); }
+.reserve__title { font-size: var(--text-h2); font-weight: 300; line-height: 0.95; }
+.reserve__title em { font-style: italic; color: var(--rosso); }
+.reserve__grid { display: grid; gap: 0.8rem; }
+@media (min-width: 800px) { .reserve__grid { grid-template-columns: 1fr 1fr; } }
+.reserve-card {
+  position: relative;
+  min-height: clamp(26rem, 20rem + 18vw, 38rem);
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 0.7rem;
+  padding: clamp(1.6rem, 1rem + 2vw, 3rem);
+  color: var(--crema);
+  overflow: hidden;
+  isolation: isolate;
+}
+.reserve-card img {
+  position: absolute; inset: 0; z-index: -2;
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.6s var(--ease-out);
+}
+.reserve-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--card-tint); }
+.reserve-card--verde { --card-tint: linear-gradient(180deg, rgb(29 34 19 / 15%), rgb(29 34 19 / 88%)); }
+.reserve-card--rosso { --card-tint: linear-gradient(180deg, rgb(90 20 24 / 15%), rgb(90 20 24 / 88%)); }
+.reserve-card:hover img { transform: scale(1.05); }
+.reserve-card__title { font-size: var(--text-h3); font-weight: 300; line-height: 1; }
+.reserve-card__cta { display: inline-flex; gap: 0.8rem; align-items: center; margin-top: 0.6rem; }
+.reserve-card__cta::after { content: "→"; font-family: var(--font-serif); font-size: 1.3rem; transition: transform var(--dur) var(--ease-out); }
+.reserve-card:hover .reserve-card__cta::after { transform: translateX(0.4rem); }
+.reserve__note { margin-top: 2rem; text-align: center; color: rgb(28 19 17 / 70%); }
+.reserve__note a { border-bottom: 1px solid currentColor; }

@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/{{ogImage}}-1200.webp">
+  <meta name="theme-color" content="{{themeColor}}">
+  <meta name="robots" content="noindex, nofollow"><!-- boceto: quitar al publicar la web definitiva -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/sections.css">
+  <link rel="stylesheet" href="assets/css/sala.css">
+  <script>
+    /* Estado antes del primer pintado: evita parpadeos de la cortina y del loader */
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      try {
+        if (sessionStorage.getItem("noi-curtain")) d.classList.add("js-curtain-in");
+        else if (d.hasAttribute("data-loader") && !sessionStorage.getItem("noi-visited")) d.classList.add("js-loader");
+      } catch (e) { /* sin sessionStorage: sin cortina ni loader */ }
+    })();
+  </script>

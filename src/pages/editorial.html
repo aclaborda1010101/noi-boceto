@@ -1,0 +1,225 @@
+<!--meta {
+  "title": "NOI — Italiano en Madrid · Propuesta editorial",
+  "description": "NOI, cocina italiana del chef Gianni Pinto en Recoletos 6, Madrid. Dos salas: NOI Ristorante, la experiencia gastronómica, y NOI Bar e Cucina, la cocina de siempre para compartir.",
+  "ogImage": "noi-web-03",
+  "themeColor": "#3a0b0e",
+  "theme": "home",
+  "headerClass": "header--home",
+  "sala": ""
+} -->
+<!doctype html>
+<html lang="es" data-loader>
+<head>
+  {{> head}}
+  <link rel="stylesheet" href="assets/css/editorial.css">
+</head>
+<body data-version="editorial">
+  {{> defs}}
+
+  <div class="loader" data-loader aria-hidden="true">
+    <div class="loader__half loader__half--top"></div>
+    <div class="loader__half loader__half--bottom"></div>
+    <span class="logo logo--xl">
+      <svg class="logo__brush" viewBox="0 0 300 34"><use href="#brush"/></svg>
+      <span class="logo__word">NOI</span>
+      <span class="logo__tag">italiano en madrid</span>
+    </span>
+  </div>
+
+  {{> header}}
+
+  <main id="contenido">
+    <!-- Las dos puertas: cada sala con su foto en movimiento y su reserva -->
+    <section class="doors" data-header-trigger aria-label="Los dos espacios de NOI">
+      <div class="doors__brand">
+        <h1 class="logo logo--xl">
+          <svg class="logo__brush" viewBox="0 0 300 34" aria-hidden="true"><use href="#brush"/></svg>
+          <span class="logo__word">NOI</span>
+          <span class="logo__tag">italiano en madrid</span>
+        </h1>
+      </div>
+
+      <article class="door door--verde" aria-labelledby="door-ristorante">
+        <div class="slides" data-slides data-interval="5600">
+          {{img noi-web-01 | Sala verde de NOI Ristorante | (min-width: 900px) 50vw, 100vw | class="is-active" loading="eager" fetchpriority="high"}}
+          {{img noi-oct26-01 | Mesa redonda vestida de blanco en la sala verde | (min-width: 900px) 50vw, 100vw}}
+          {{img noi-web-02 | Mesas del Ristorante bajo las lámparas de la sala verde | (min-width: 900px) 50vw, 100vw}}
+        </div>
+        <div class="door__shade" aria-hidden="true"></div>
+        <div class="door__content">
+          <p class="label door__eyebrow">Sala verde · Alta cocina italiana</p>
+          <h2 class="door__title" id="door-ristorante"><small>NOI</small>Ristorante</h2>
+          <p class="door__line">La expresión más creativa y gastronómica de NOI: tradición, técnica y sorpresa, sin formalidades innecesarias.</p>
+          <ul class="door__awards label">
+            <li><svg aria-hidden="true"><use href="#mark-award"/></svg>Michelin 2026</li>
+            <li><svg aria-hidden="true"><use href="#mark-award"/></svg>Guía Repsol 2026</li>
+          </ul>
+          <div class="door__actions">
+            <a class="btn btn--solid" href="ristorante.html"><span>Descubrir</span></a>
+            <a class="btn" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150509" target="_blank" rel="noopener" data-reserve="ristorante"><span>Reservar</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="door door--rosso" aria-labelledby="door-bar">
+        <div class="slides slides--side" data-slides data-interval="5600" data-offset="2800">
+          {{img noi-web-06 | Barra de NOI Bar e Cucina con taburetes de terciopelo rojo | (min-width: 900px) 50vw, 100vw | class="is-active" loading="eager"}}
+          {{img noi-web-09 | Sala roja con suelo de rayas y la bodega al fondo | (min-width: 900px) 50vw, 100vw}}
+          {{img noi-oct26-12 | Mesa bajo el espejo de luz en arco | (min-width: 900px) 50vw, 100vw}}
+        </div>
+        <div class="door__shade" aria-hidden="true"></div>
+        <div class="door__content">
+          <p class="label door__eyebrow">La barra · Cocina de siempre</p>
+          <h2 class="door__title" id="door-bar"><small>NOI</small>Bar e <em>Cucina</em></h2>
+          <p class="door__line">El lado más espontáneo del chef Gianni Pinto. Cocina italiana auténtica, generosa y para compartir.</p>
+          <ul class="door__awards label">
+            <li>Aperitivo · Comida · Cena</li>
+          </ul>
+          <div class="door__actions">
+            <a class="btn btn--solid" href="bar-e-cucina.html"><span>Ver la carta</span></a>
+            <a class="btn" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150506" target="_blank" rel="noopener" data-reserve="bar"><span>Reservar</span></a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Manifiesto -->
+    <section class="manifesto" aria-labelledby="manifesto-title">
+      <div class="manifesto__inner">
+        <p class="label manifesto__eyebrow reveal">Noi · «nosotros» en italiano</p>
+        <h2 class="manifesto__text reveal" id="manifesto-title" data-delay="1">Una casa italiana en Recoletos con <em>dos salas</em> y dos maneras de sentarse a la mesa: la del gesto creativo y la de la receta de siempre.</h2>
+        <p class="manifesto__sign reveal" data-delay="2">Recoletos 6 · Madrid</p>
+      </div>
+    </section>
+
+    <!-- Fotos grandes, sin texto, que se cortan unas a otras al hacer scroll -->
+    <section class="cuts" data-cuts aria-label="Los espacios de NOI">
+      <div class="cuts__sticky">
+        <figure class="cut" data-label="Sala verde — Ristorante">{{img noi-web-03 | Vista general de la sala verde del Ristorante | 100vw}}</figure>
+        <figure class="cut" data-cut="center-v" data-label="La barra — Bar e Cucina">{{img noi-web-07 | La barra roja de Bar e Cucina con sus lámparas | 100vw}}</figure>
+        <figure class="cut" data-cut="bottom" data-label="Sala verde — Ristorante">{{img noi-web-04 | Sala verde con espejos ovalados y techo de lunares | 100vw}}</figure>
+        <figure class="cut" data-cut="diagonal" data-label="Sala roja — Bar e Cucina">{{img noi-web-08 | Sala roja con suelo de rayas y la bodega iluminada | 100vw}}</figure>
+        <figure class="cut" data-cut="center-h" data-label="Il bancone">{{img noi-web-11 | Servicio sobre la barra de mármol | 100vw}}</figure>
+        <div class="cuts__caption label">
+          <span><span data-cuts-index>01</span> / 05</span>
+          <span class="cuts__progress" aria-hidden="true"><span data-cuts-bar></span></span>
+          <span data-cuts-label>Sala verde — Ristorante</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOI Ristorante -->
+    <section class="feature theme-verde" aria-labelledby="feature-ristorante">
+      <div class="feature__media">
+        <figure class="feature__main reveal-img">
+          <div data-parallax="0.1">{{img noi-web-02 | Mesas del Ristorante en la sala verde | (min-width: 900px) 50vw, 100vw}}</div>
+        </figure>
+        <figure class="feature__sub reveal-img reveal-img--side">{{img noi-oct26-22 | Copas y servicio sobre mantel blanco | (min-width: 900px) 22vw, 42vw}}</figure>
+      </div>
+      <div class="feature__text">
+        <p class="label feature__eyebrow reveal">NOI Ristorante · Sala verde</p>
+        <h2 class="feature__title reveal" id="feature-ristorante" data-delay="1">La expresión más <em>creativa</em></h2>
+        <p class="feature__body reveal" data-delay="2">NOI Ristorante es la expresión más creativa y gastronómica de NOI. Una cocina italiana contemporánea, donde la tradición se encuentra con la innovación, la técnica y la sorpresa. Una experiencia sofisticada, pero cercana, que celebra el producto, la creatividad y el placer de disfrutar de la alta cocina sin formalidades innecesarias.</p>
+        <ul class="feature__awards reveal" data-delay="2">
+          <li><svg aria-hidden="true"><use href="#mark-award"/></svg><span class="label">Guía</span><strong>Michelin 2026</strong></li>
+          <li><svg aria-hidden="true"><use href="#mark-award"/></svg><span class="label">Guía</span><strong>Repsol 2026</strong></li>
+        </ul>
+        <div class="feature__actions reveal" data-delay="3">
+          <a class="btn btn--solid" href="ristorante.html"><span>Descubrir el Ristorante</span></a>
+          <a class="btn" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150509" target="_blank" rel="noopener" data-reserve="ristorante"><span>Reservar mesa</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOI Bar e Cucina -->
+    <section class="feature feature--flip theme-rosso" aria-labelledby="feature-bar">
+      <div class="feature__media">
+        <figure class="feature__main reveal-img">
+          <div data-parallax="0.1">{{img noi-oct26-06 | Barra de mármol con taburetes de terciopelo rojo | (min-width: 900px) 50vw, 100vw}}</div>
+        </figure>
+        <figure class="feature__sub reveal-img reveal-img--side">{{img noi-web-12 | Servilleta bordada NOI Bar e Cucina sobre la barra | (min-width: 900px) 22vw, 42vw}}</figure>
+      </div>
+      <div class="feature__text">
+        <p class="label feature__eyebrow reveal">NOI Bar e Cucina · La barra</p>
+        <h2 class="feature__title reveal" id="feature-bar" data-delay="1">El lado más <em>espontáneo</em></h2>
+        <p class="feature__body reveal" data-delay="2">NOI Bar e Cucina representa el lado más espontáneo del chef Gianni Pinto. Una cocina italiana auténtica, generosa y sin artificios, donde las recetas de siempre cobran vida a través de un producto extraordinario. Un espacio para compartir, disfrutar sin prisas y sentirse como en casa.</p>
+        <div class="feature__actions reveal" data-delay="3">
+          <a class="btn btn--solid" href="bar-e-cucina.html#carta"><span>Ver la carta</span></a>
+          <a class="btn" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150506" target="_blank" rel="noopener" data-reserve="bar"><span>Reservar en la barra</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chef -->
+    <section class="chef" aria-labelledby="chef-name">
+      <figure class="chef__media reveal-img reveal-img--center">
+        <picture>
+          <source media="(max-width: 799px)" srcset="assets/img/noi-oct26-24-1200.webp 800w, assets/img/noi-oct26-24-2400.webp 1600w" sizes="100vw" width="800" height="1200">
+          {{img noi-oct26-25 | El chef Gianni Pinto con los brazos cruzados frente a la bodega | 100vw}}
+        </picture>
+        <figcaption class="chef__caption">
+          <span class="label">Chef</span>
+          <h2 class="chef__name" id="chef-name">Gianni Pinto</h2>
+          <p>Dos cocinas, una misma firma.</p>
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- Detalles -->
+    <section class="gallery" data-gallery aria-labelledby="gallery-title">
+      <div class="gallery__head">
+        <h2 class="gallery__title reveal" id="gallery-title">I <em>dettagli</em></h2>
+        <div class="gallery__nav">
+          <button class="gallery__btn" type="button" data-gallery-prev aria-label="Foto anterior"><svg style="transform: scaleX(-1)"><use href="#arrow"/></svg></button>
+          <button class="gallery__btn" type="button" data-gallery-next aria-label="Foto siguiente"><svg><use href="#arrow"/></svg></button>
+        </div>
+      </div>
+      <div class="gallery__track" data-gallery-track tabindex="0" aria-label="Galería de detalles">
+        <figure class="gallery__item reveal-img">{{img noi-oct26-04 | Mesa de mármol con servilletas NOI | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
+        <figure class="gallery__item reveal-img">{{img noi-oct26-14 | Lámpara de cristal martillado | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
+        <figure class="gallery__item reveal-img">{{img noi-oct26-21 | Cubiertos sobre mármol | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
+        <figure class="gallery__item reveal-img">{{img noi-oct26-23 | Lámparas rojas y latón | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
+        <figure class="gallery__item reveal-img">{{img noi-web-13 | Servilleta bordada NOI | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
+        <figure class="gallery__item reveal-img">{{img noi-oct26-16 | Vasos y platos sobre la mesa | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
+        <figure class="gallery__item reveal-img">{{img noi-oct26-10 | Mesa bajo el espejo de luz | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
+        <figure class="gallery__item reveal-img">{{img noi-oct26-15 | Servicio en la barra | (min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw}}</figure>
+      </div>
+    </section>
+
+    <!-- Reservas: elegir sala -->
+    <section class="reserve" id="reservar" aria-labelledby="reserve-heading">
+      <div class="reserve__head">
+        <p class="label reveal">Reservas</p>
+        <h2 class="reserve__title reveal" id="reserve-heading" data-delay="1">Dos salas, <em>una mesa para ti</em></h2>
+        <p class="reveal" data-delay="2">Elige dónde quieres sentarte y consulta la disponibilidad al momento.</p>
+      </div>
+      <div class="reserve__grid">
+        <a class="reserve-card reserve-card--verde reveal" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150509" target="_blank" rel="noopener" data-reserve="ristorante">
+          {{img noi-web-15 | Mesa vestida de blanco en la sala verde de NOI Ristorante | (min-width: 800px) 50vw, 100vw}}
+          <span class="label">Sala verde · Gastronómico</span>
+          <span class="reserve-card__title">NOI Ristorante</span>
+          <span>Cocina italiana contemporánea. Técnica, creatividad y sorpresa.</span>
+          <span class="reserve-card__cta label">Reservar en el Ristorante</span>
+        </a>
+        <a class="reserve-card reserve-card--rosso reveal" data-delay="1" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150506" target="_blank" rel="noopener" data-reserve="bar">
+          {{img noi-web-05 | Barra de NOI Bar e Cucina con lámparas y taburetes rojos | (min-width: 800px) 50vw, 100vw}}
+          <span class="label">La barra · Cocina de siempre</span>
+          <span class="reserve-card__title">NOI Bar e Cucina</span>
+          <span>Cocina italiana auténtica, generosa y sin artificios. Para compartir.</span>
+          <span class="reserve-card__cta label">Reservar en Bar e Cucina</span>
+        </a>
+      </div>
+      <p class="reserve__note">¿Grupos, eventos o una petición especial? Llámanos al <a href="tel:+34910694007">910 694 007</a> o escribe a <a href="mailto:info@restaurantenoi.com">info@restaurantenoi.com</a></p>
+    </section>
+  </main>
+
+  {{> footer}}
+
+  <nav class="switcher label" aria-label="Propuestas de diseño">
+    <a href="index.html">Propuesta 1 · Sencilla</a>
+    <a href="editorial.html" aria-current="page">Propuesta 2 · Editorial</a>
+  </nav>
+
+  {{> modal}}
+</body>
+</html>

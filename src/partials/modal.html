@@ -1,0 +1,26 @@
+<dialog class="reserve-modal" data-reserve-modal aria-labelledby="reserve-modal-title">
+    <div class="reserve-modal__head">
+      <p class="reserve-modal__title" id="reserve-modal-title">Reservar en NOI</p>
+      <button class="reserve-modal__close" type="button" data-reserve-close aria-label="Cerrar reservas">×</button>
+    </div>
+    <div class="reserve-modal__tabs" role="tablist" aria-label="Elige sala">
+      <button class="reserve-tab" type="button" role="tab" aria-selected="false" data-sala="ristorante" data-url="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150509">
+        <span class="label">Sala verde</span><strong>NOI Ristorante</strong>
+      </button>
+      <button class="reserve-tab" type="button" role="tab" aria-selected="false" data-sala="bar" data-url="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150506">
+        <span class="label">La barra</span><strong>NOI Bar e Cucina</strong>
+      </button>
+    </div>
+    <div class="reserve-modal__body">
+      <p class="reserve-modal__choose" data-reserve-choose>Elige la sala para ver la disponibilidad.</p>
+      <iframe class="reserve-modal__frame" title="Reserva en CoverManager" data-reserve-frame hidden></iframe>
+    </div>
+    <div class="reserve-modal__foot">
+      <span>¿Grupos o eventos? <a href="tel:+34910694007">910 694 007</a></span>
+      <a href="#" target="_blank" rel="noopener" data-reserve-external hidden>Abrir en una pestaña nueva ↗</a>
+    </div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="assets/js/core.js" defer></script>
+  <script src="assets/js/widgets.js" defer></script>

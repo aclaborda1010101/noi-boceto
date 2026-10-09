@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>NOI Bar e Cucina — Cocina italiana de siempre en Madrid</title>
+  <meta name="description" content="NOI Bar e Cucina: el lado más espontáneo del chef Gianni Pinto. Cocina italiana auténtica y generosa para compartir en la barra de Recoletos 6, Madrid. Consulta la carta y reserva.">
+  <meta property="og:title" content="NOI Bar e Cucina — Cocina italiana de siempre en Madrid">
+  <meta property="og:description" content="NOI Bar e Cucina: el lado más espontáneo del chef Gianni Pinto. Cocina italiana auténtica y generosa para compartir en la barra de Recoletos 6, Madrid. Consulta la carta y reserva.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/noi-web-05-1200.webp">
+  <meta name="theme-color" content="#5a1418">
+  <meta name="robots" content="noindex, nofollow"><!-- boceto: quitar al publicar la web definitiva -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/sections.css">
+  <link rel="stylesheet" href="assets/css/sala.css">
+  <script>
+    /* Estado antes del primer pintado: evita parpadeos de la cortina y del loader */
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      try {
+        if (sessionStorage.getItem("noi-curtain")) d.classList.add("js-curtain-in");
+        else if (d.hasAttribute("data-loader") && !sessionStorage.getItem("noi-visited")) d.classList.add("js-loader");
+      } catch (e) { /* sin sessionStorage: sin cortina ni loader */ }
+    })();
+  </script>
+
+</head>
+<body class="theme-rosso">
+  <svg class="svg-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <!-- Pincel seco: vetas horizontales + bordes irregulares -->
+      <filter id="brush-dry" x="-4%" y="-40%" width="108%" height="180%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.005 0.38" numOctaves="2" seed="11" result="streaks"/>
+        <feColorMatrix in="streaks" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.3 0 0 0 2.05" result="dryMask"/>
+        <feComposite in="SourceGraphic" in2="dryMask" operator="in" result="dry"/>
+        <feTurbulence type="turbulence" baseFrequency="0.03 0.22" numOctaves="2" seed="4" result="edge"/>
+        <feDisplacementMap in="dry" in2="edge" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+      <symbol id="brush" viewBox="0 0 300 34">
+        <g filter="url(#brush-dry)" fill="currentColor">
+          <path d="M4 15C40 5 110 3 170 4c50 1 92 2 127 1 2 3 1.4 6-1.8 8-40 4-90 9-145 12-50 3-100 6-141 6-7-1-8.6-10-5.2-16z"/>
+          <path d="M18 30.4c52-2 122-5 182-9.4 40-2.6 70-4 94-4.8l-.6 2.2c-33 2-73 4.6-113 7.6-60 4.2-118 6.6-162 7z" opacity=".65"/>
+          <path d="M30 4.4C90 2 170 1.2 260 2.4l-.4 1.4C170 3 95 3.6 30 6z" opacity=".5"/>
+        </g>
+      </symbol>
+      <symbol id="mark-award" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1"/>
+        <circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width=".6"/>
+        <circle cx="12" cy="12" r="2.2" fill="currentColor"/>
+      </symbol>
+      <symbol id="arrow" viewBox="0 0 24 24">
+        <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="curtain curtain--rosso" data-curtain aria-hidden="true">
+    <span class="logo">
+      <svg class="logo__brush" viewBox="0 0 300 34"><use href="#brush"/></svg>
+      <span class="logo__word">NOI</span>
+    </span>
+  </div>
+
+  <header class="header " data-header>
+    <button class="menu-toggle label" type="button" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+      <span class="menu-toggle__icon" aria-hidden="true"></span>
+      <span class="menu-toggle__text" data-menu-label>Menú</span>
+    </button>
+    <a class="header__logo logo logo--sm" href="index.html" aria-label="NOI — inicio">
+      <svg class="logo__brush" viewBox="0 0 300 34" aria-hidden="true"><use href="#brush"/></svg>
+      <span class="logo__word" aria-hidden="true">NOI</span>
+    </a>
+    <div class="header__right">
+      <a class="header__tel label link-line" href="tel:+34910694007">910 694 007</a>
+      <a class="btn header__reserve" href="#reservar" data-reserve="bar"><span>Reservar</span></a>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" data-menu inert>
+    <nav class="menu__nav" aria-label="Principal">
+      <ol class="menu__list">
+        <li class="menu__item"><a class="menu__link" href="index.html" data-media="0"><small>01</small>Inicio</a></li>
+        <li class="menu__item"><a class="menu__link" href="ristorante.html" data-media="1"><small>02</small>NOI Ristorante</a></li>
+        <li class="menu__item"><a class="menu__link" href="bar-e-cucina.html" data-media="2"><small>03</small>NOI Bar e Cucina</a></li>
+        <li class="menu__item"><a class="menu__link" href="bar-e-cucina.html#carta" data-media="3"><small>04</small>La carta</a></li>
+        <li class="menu__item"><a class="menu__link" href="#reservar" data-reserve="bar" data-media="4"><small>05</small>Reservar</a></li>
+        <li class="menu__item"><a class="menu__link" href="https://restaurantenoi.com/regala-experiencia-noi/" target="_blank" rel="noopener" data-media="5"><small>06</small>Regala NOI</a></li>
+        <li class="menu__item"><a class="menu__link" href="mailto:info@restaurantenoi.com?subject=Lavora%20con%20Noi" data-media="6"><small>07</small>Lavora con Noi</a></li>
+      </ol>
+      <div class="menu__foot label">
+        <a class="link-line" href="https://www.instagram.com/ristorantenoi/" target="_blank" rel="noopener">Instagram</a>
+        <a class="link-line" href="https://maps.google.com/?q=Calle+Recoletos+6,+28001+Madrid" target="_blank" rel="noopener">Recoletos 6 · Madrid</a>
+        <a class="link-line" href="mailto:info@restaurantenoi.com">info@restaurantenoi.com</a>
+      </div>
+    </nav>
+    <div class="menu__media" aria-hidden="true">
+      <img src="assets/img/noi-oct26-12-1200.webp" srcset="assets/img/noi-oct26-12-1200.webp 800w, assets/img/noi-oct26-12-2400.webp 1600w" sizes="50vw" width="800" height="1200" alt="" loading="lazy" decoding="async" class="is-active">
+      <img src="assets/img/noi-web-03-1200.webp" srcset="assets/img/noi-web-03-1200.webp 1200w, assets/img/noi-web-03-2400.webp 2400w" sizes="50vw" width="1200" height="800" alt="" loading="lazy" decoding="async">
+      <img src="assets/img/noi-web-05-1200.webp" srcset="assets/img/noi-web-05-1200.webp 1200w, assets/img/noi-web-05-2400.webp 1536w" sizes="50vw" width="1200" height="800" alt="" loading="lazy" decoding="async">
+      <img src="assets/img/noi-web-14-1200.webp" srcset="assets/img/noi-web-14-1200.webp 1200w, assets/img/noi-web-14-2400.webp 2400w" sizes="50vw" width="1200" height="800" alt="" loading="lazy" decoding="async">
+      <img src="assets/img/noi-oct26-16-1200.webp" srcset="assets/img/noi-oct26-16-1200.webp 800w, assets/img/noi-oct26-16-2400.webp 1600w" sizes="50vw" width="800" height="1200" alt="" loading="lazy" decoding="async">
+      <img src="assets/img/noi-oct26-21-1200.webp" srcset="assets/img/noi-oct26-21-1200.webp 800w, assets/img/noi-oct26-21-2400.webp 1600w" sizes="50vw" width="800" height="1200" alt="" loading="lazy" decoding="async">
+      <img src="assets/img/noi-oct26-19-1200.webp" srcset="assets/img/noi-oct26-19-1200.webp 800w, assets/img/noi-oct26-19-2400.webp 1600w" sizes="50vw" width="800" height="1200" alt="" loading="lazy" decoding="async">
+    </div>
+  </div>
+
+
+  <main id="contenido">
+    <section class="sala-hero" data-header-trigger aria-labelledby="sala-title">
+      <div class="slides slides--side" data-slides data-interval="5200">
+        <img src="assets/img/noi-web-05-1200.webp" srcset="assets/img/noi-web-05-1200.webp 1200w, assets/img/noi-web-05-2400.webp 1536w" sizes="100vw" width="1200" height="800" alt="La barra de NOI Bar e Cucina con lámparas colgantes y taburetes rojos" decoding="async" class="is-active" loading="eager" fetchpriority="high">
+        <img src="assets/img/noi-web-08-1200.webp" srcset="assets/img/noi-web-08-1200.webp 1200w, assets/img/noi-web-08-2400.webp 2400w" sizes="100vw" width="1200" height="800" alt="Sala roja con suelo de rayas y la bodega iluminada" loading="lazy" decoding="async">
+        <img src="assets/img/noi-web-07-1200.webp" srcset="assets/img/noi-web-07-1200.webp 1200w, assets/img/noi-web-07-2400.webp 1536w" sizes="100vw" width="1200" height="800" alt="La barra vista desde la entrada" loading="lazy" decoding="async">
+      </div>
+      <div class="sala-hero__content">
+        <p class="label">La barra · Recoletos 6</p>
+        <h1 class="sala-hero__title" id="sala-title"><small>NOI</small>Bar e <em>Cucina</em></h1>
+        <div class="sala-hero__meta">
+          <a class="btn btn--solid" href="#carta"><span>Ver la carta</span></a>
+          <span class="scroll-cue label" aria-hidden="true">Bajar</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sala-intro" aria-labelledby="intro-title">
+      <p class="label reveal" style="color: var(--accent)">Cocina de siempre</p>
+      <h2 class="sala-intro__text reveal" id="intro-title" data-delay="1">El lado más <em>espontáneo</em> del chef Gianni Pinto.</h2>
+      <p class="reveal" data-delay="2" style="max-width: 40rem; color: var(--fg-soft)">Una cocina italiana auténtica, generosa y sin artificios, donde las recetas de siempre cobran vida a través de un producto extraordinario. Un espacio para compartir, disfrutar sin prisas y sentirse como en casa.</p>
+    </section>
+
+    <!-- Carta (transcrita del PDF «Carta NOI Bar e Cucina») -->
+    <section class="carta" id="carta" aria-labelledby="carta-title">
+      <div class="carta__head">
+        <div class="carta__brand">
+          <span class="logo">
+            <svg class="logo__brush" viewBox="0 0 300 34" aria-hidden="true"><use href="#brush"/></svg>
+            <span class="logo__word" aria-hidden="true">NOI</span>
+            <span class="logo__tag" aria-hidden="true">Bar e Cucina</span>
+          </span>
+        </div>
+        <h2 class="sr-only" id="carta-title">Carta de NOI Bar e Cucina</h2>
+      </div>
+
+      <nav class="carta__nav label" data-carta-nav aria-label="Secciones de la carta">
+        <a href="#per-cominciare">Per cominciare</a>
+        <a href="#pasta">Pasta</a>
+        <a href="#dalla-cucina">Dalla cucina</a>
+        <a href="#dolci">Dolci</a>
+      </nav>
+
+      <div class="carta__cols">
+        <div class="carta__col">
+          <section class="carta__section" id="per-cominciare" aria-label="Per cominciare">
+            <h3>Per cominciare</h3>
+            <div class="dish"><span class="dish__name">Pane e olio</span><span class="dish__price">3 <small>/ und</small></span><span class="dish__desc">Pan de masa madre y aceite de oliva virgen extra toscano</span></div>
+            <div class="dish"><span class="dish__name">Focaccia genovese</span><span class="dish__price">4 <small>/ und</small></span><span class="dish__desc">Focaccia blanca, aceite y sal</span></div>
+            <div class="dish"><span class="dish__name">Salumi italiani</span><span class="dish__price">16</span><span class="dish__desc">Mortadella Nera Mora Negrini, finocchiona y coppa</span></div>
+            <div class="dish"><span class="dish__name">Pane, burro e alici</span><span class="dish__price">6 <small>/ und</small></span><span class="dish__desc">Anchoa del Cantábrico y mantequilla de trufa blanca</span></div>
+            <div class="dish"><span class="dish__name">Tramezzino veneziano</span><span class="dish__price">12</span><span class="dish__desc">Sándwich de pollo de corral al horno, mayonesa, apio y mostaza</span></div>
+            <div class="dish"><span class="dish__name">Arancino alla milanese</span><span class="dish__price">6 <small>/ und</small></span><span class="dish__desc">Arroz frito al azafrán, relleno de ossobuco a la milanesa y emulsión ahumada de limón</span></div>
+            <div class="dish"><span class="dish__name">Panino e mortadella</span><span class="dish__price">12</span><span class="dish__desc">Pan brioche con mortadela de trufa y Provolone</span></div>
+            <div class="dish"><span class="dish__name">Rustico leccese</span><span class="dish__price">12</span><span class="dish__desc">Hojaldre relleno de mozzarella, Parmigiano Reggiano y tomate</span></div>
+          </section>
+
+          <section class="carta__section" id="pasta" aria-label="Pasta">
+            <h3>Pasta</h3>
+            <div class="dish"><span class="dish__name">Spaghetti aglio, olio e peperoncino</span><span class="dish__price">16</span><span class="dish__desc">Ajo frito, aceite de oliva y guindilla</span></div>
+            <div class="dish"><span class="dish__name">Rigatoni al pomodoro</span><span class="dish__price">16</span><span class="dish__desc">Salsa de tomate y parmigiano</span></div>
+            <div class="dish"><span class="dish__name">Spaghetti alla carbonara</span><span class="dish__price">20</span><span class="dish__desc">Sabayon de huevo, pecorino, guanciale y pimienta negra</span></div>
+            <div class="dish"><span class="dish__name">Rigatoni all’amatriciana</span><span class="dish__price">18</span><span class="dish__desc">Tomate, guanciale y pecorino romano</span></div>
+            <div class="dish"><span class="dish__name">Tonnarelli cacio e pepe</span><span class="dish__price">18</span><span class="dish__desc">Pecorino romano y pimienta negra</span></div>
+            <div class="dish"><span class="dish__name">Lasagna croccante</span><span class="dish__price">22</span><span class="dish__desc">Ragù bolognese, parmigiano y bechamel</span></div>
+            <div class="dish"><span class="dish__name">Spaghetti Garofalo all’astice</span><span class="dish__price">55</span><span class="dish__desc">Bogavante en su salsa, tomate y albahaca</span></div>
+          </section>
+        </div>
+
+        <div class="carta__col">
+          <section class="carta__section" id="dalla-cucina" aria-label="Dalla cucina">
+            <h3>Dalla cucina</h3>
+            <div class="dish"><span class="dish__name">Pomodoro, cipolla e aceto</span><span class="dish__price">18</span><span class="dish__desc">Tomate de otoño, cebolla de Figueras agridulce y piñones</span></div>
+            <div class="dish"><span class="dish__name">Zucchine, cozze e scapece</span><span class="dish__price">20</span><span class="dish__desc">Calabacines fritos alla Nerano con mejillones en carpione y berenjena ahumada</span></div>
+            <div class="dish"><span class="dish__name">Funghi, parmigiano e nocciole</span><span class="dish__price">17</span><span class="dish__desc">Carpaccio de portobello, Parmigiano Reggiano y mantequilla de setas con avellanas</span></div>
+            <div class="dish"><span class="dish__name">Peperoni arrostiti</span><span class="dish__price">18</span><span class="dish__desc">Pimientos a la brasa con su emulsión, alcaparras y aceitunas ‘taggiasche’</span></div>
+            <div class="dish"><span class="dish__name">Porri al Marsala</span><span class="dish__price">20</span><span class="dish__desc">Puerros confitados, taleggio, toffee de Marsala y salvia frita</span></div>
+            <div class="dish"><span class="dish__name">La parmigiana</span><span class="dish__price">24</span><span class="dish__desc">Berenjena frita, pesto de albahaca y espuma de Parmigiano Reggiano</span></div>
+            <div class="dish"><span class="dish__name">Branzino crudo</span><span class="dish__price">22</span><span class="dish__desc">Carpaccio de lubina salvaje, lima y aceite de oliva</span></div>
+            <div class="dish"><span class="dish__name">Battuta di manzo</span><span class="dish__price">24</span><span class="dish__desc">Tartar de solomillo cortado a mano y Provolone del Monaco</span></div>
+            <div class="dish"><span class="dish__name">Vitello tonnato</span><span class="dish__price">20</span><span class="dish__desc">Ternera blanca, salsa tonnata, alcaparras y limón</span></div>
+            <div class="dish"><span class="dish__name">Polpette al sugo</span><span class="dish__price">18</span><span class="dish__desc">Albóndigas de carne, salsa de tomate, Pecorino y albahaca</span></div>
+            <div class="dish"><span class="dish__name">Salsiccia di Ginosa</span><span class="dish__price">16</span><span class="dish__desc">Longaniza de cerdo a la brasa con giardiniera de verduras y salsa picante</span></div>
+          </section>
+
+          <section class="carta__section" id="dolci" aria-label="Dolci">
+            <h3>Dolci</h3>
+            <div class="dish"><span class="dish__name">Tiramisù</span><span class="dish__price">12</span><span class="dish__desc">Café y amaretto</span></div>
+            <div class="dish"><span class="dish__name">Panna cotta</span><span class="dish__price">10</span><span class="dish__desc">Vainilla, caramelo y frutos rojos</span></div>
+            <div class="dish"><span class="dish__name">Cannolo siciliano</span><span class="dish__price">10</span><span class="dish__desc">Ricotta, chocolate y pistacho</span></div>
+          </section>
+        </div>
+      </div>
+
+      <p class="carta__quote reveal">«NOI Bar e Cucina es nuestro lado más espontáneo: cocina italiana de casa, producto extraordinario y el placer de compartir»</p>
+      <div class="carta__foot">
+        <a class="btn" href="assets/docs/carta-noi-bar-e-cucina.pdf" target="_blank" rel="noopener"><span>Descargar la carta (PDF)</span></a>
+      </div>
+    </section>
+
+    <!-- Fotos grandes, sin texto, que se cortan al hacer scroll -->
+    <section class="cuts" data-cuts aria-label="La barra y la sala roja">
+      <div class="cuts__sticky">
+        <figure class="cut cut--pair" data-label="La barra">
+          <img src="assets/img/noi-web-06-1200.webp" srcset="assets/img/noi-web-06-1200.webp 900w, assets/img/noi-web-06-2400.webp 1086w" sizes="(min-width: 800px) 50vw, 100vw" width="900" height="1200" alt="La barra con taburetes de terciopelo rojo" loading="lazy" decoding="async">
+          <img src="assets/img/noi-oct26-06-1200.webp" srcset="assets/img/noi-oct26-06-1200.webp 800w, assets/img/noi-oct26-06-2400.webp 1600w" sizes="50vw" width="800" height="1200" alt="Barra de mármol y taburetes rojos" loading="lazy" decoding="async">
+        </figure>
+        <figure class="cut" data-cut="center-v" data-label="La bodega"><img src="assets/img/noi-oct26-20-1200.webp" srcset="assets/img/noi-oct26-20-1200.webp 1200w, assets/img/noi-oct26-20-2400.webp 2400w" sizes="100vw" width="1200" height="800" alt="Servicio de vino frente a la bodega iluminada" loading="lazy" decoding="async"></figure>
+        <figure class="cut cut--pair" data-cut="bottom" data-label="Sala roja">
+          <img src="assets/img/noi-oct26-12-1200.webp" srcset="assets/img/noi-oct26-12-1200.webp 800w, assets/img/noi-oct26-12-2400.webp 1600w" sizes="(min-width: 800px) 50vw, 100vw" width="800" height="1200" alt="Mesa bajo el espejo de luz en arco" loading="lazy" decoding="async">
+          <img src="assets/img/noi-web-09-1200.webp" srcset="assets/img/noi-web-09-1200.webp 800w, assets/img/noi-web-09-2400.webp 1600w" sizes="50vw" width="800" height="1200" alt="Sala roja con suelo de rayas" loading="lazy" decoding="async">
+        </figure>
+        <figure class="cut" data-cut="diagonal" data-label="Il bancone"><img src="assets/img/noi-web-14-1200.webp" srcset="assets/img/noi-web-14-1200.webp 1200w, assets/img/noi-web-14-2400.webp 2400w" sizes="100vw" width="1200" height="800" alt="Servilleta NOI Bar e Cucina sobre el mármol" loading="lazy" decoding="async"></figure>
+        <div class="cuts__caption label">
+          <span><span data-cuts-index>01</span> / 04</span>
+          <span class="cuts__progress" aria-hidden="true"><span data-cuts-bar></span></span>
+          <span data-cuts-label>La barra</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" data-gallery aria-labelledby="gallery-title">
+      <div class="gallery__head">
+        <h2 class="gallery__title reveal" id="gallery-title">Al <em>bancone</em></h2>
+        <div class="gallery__nav">
+          <button class="gallery__btn" type="button" data-gallery-prev aria-label="Foto anterior"><svg style="transform: scaleX(-1)"><use href="#arrow"/></svg></button>
+          <button class="gallery__btn" type="button" data-gallery-next aria-label="Foto siguiente"><svg><use href="#arrow"/></svg></button>
+        </div>
+      </div>
+      <div class="gallery__track" data-gallery-track tabindex="0" aria-label="Galería de la barra">
+        <figure class="gallery__item reveal-img"><img src="assets/img/noi-web-10-1200.webp" srcset="assets/img/noi-web-10-1200.webp 800w, assets/img/noi-web-10-2400.webp 1600w" sizes="(min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw" width="800" height="1200" alt="Servilleta NOI sobre la barra de mármol" loading="lazy" decoding="async"></figure>
+        <figure class="gallery__item reveal-img"><img src="assets/img/noi-oct26-23-1200.webp" srcset="assets/img/noi-oct26-23-1200.webp 800w, assets/img/noi-oct26-23-2400.webp 1600w" sizes="(min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw" width="800" height="1200" alt="Lámparas rojas de la sala" loading="lazy" decoding="async"></figure>
+        <figure class="gallery__item reveal-img"><img src="assets/img/noi-oct26-13-1200.webp" srcset="assets/img/noi-oct26-13-1200.webp 800w, assets/img/noi-oct26-13-2400.webp 1600w" sizes="(min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw" width="800" height="1200" alt="Mesa bajo el espejo de luz en arco" loading="lazy" decoding="async"></figure>
+        <figure class="gallery__item reveal-img"><img src="assets/img/noi-web-16-1200.webp" srcset="assets/img/noi-web-16-1200.webp 800w, assets/img/noi-web-16-2400.webp 1600w" sizes="(min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw" width="800" height="1200" alt="Mesas de mármol en la sala roja" loading="lazy" decoding="async"></figure>
+        <figure class="gallery__item reveal-img"><img src="assets/img/noi-oct26-14-1200.webp" srcset="assets/img/noi-oct26-14-1200.webp 800w, assets/img/noi-oct26-14-2400.webp 1600w" sizes="(min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw" width="800" height="1200" alt="Lámpara de cristal sobre la barra" loading="lazy" decoding="async"></figure>
+        <figure class="gallery__item reveal-img"><img src="assets/img/noi-web-13-1200.webp" srcset="assets/img/noi-web-13-1200.webp 800w, assets/img/noi-web-13-2400.webp 1600w" sizes="(min-width: 1100px) 33vw, (min-width: 700px) 42vw, 78vw" width="800" height="1200" alt="Servilleta bordada NOI Bar e Cucina" loading="lazy" decoding="async"></figure>
+      </div>
+    </section>
+
+    <section class="pending" id="reservar" aria-labelledby="reservar-title">
+      <p class="label" style="color: var(--accent)">Reservas</p>
+      <h2 class="pending__title reveal" id="reservar-title">Reserva en <em>NOI Bar e Cucina</em></h2>
+      <p class="reveal" data-delay="1">Consulta la disponibilidad y reserva tu sitio en la barra o en la sala roja.</p>
+      <div class="pending__actions">
+        <a class="btn btn--solid" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150506" target="_blank" rel="noopener" data-reserve="bar"><span>Reservar mesa</span></a>
+        <a class="btn" href="ristorante.html"><span>Ver NOI Ristorante</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="logo" href="index.html" aria-label="NOI — inicio">
+      <svg class="logo__brush" viewBox="0 0 300 34" aria-hidden="true"><use href="#brush"/></svg>
+      <span class="logo__word" aria-hidden="true">NOI</span>
+      <span class="logo__tag" aria-hidden="true">italiano en madrid</span>
+    </a>
+    <p class="footer__awards label">Michelin 2026 · Guía Repsol 2026</p>
+    <address class="footer__contact">
+      <a class="link-line" href="tel:+34910694007">910 694 007</a>
+      <a class="link-line" href="https://maps.google.com/?q=Calle+Recoletos+6,+28001+Madrid" target="_blank" rel="noopener">Calle Recoletos 6, 28001 Madrid</a>
+      <a class="link-line" href="mailto:info@restaurantenoi.com">info@restaurantenoi.com</a>
+    </address>
+    <nav class="footer__links label" aria-label="Enlaces">
+      <a class="link-line" href="ristorante.html">Ristorante</a>
+      <a class="link-line" href="bar-e-cucina.html">Bar e Cucina</a>
+      <a class="link-line" href="https://www.instagram.com/ristorantenoi/" target="_blank" rel="noopener">Instagram</a>
+      <a class="link-line" href="https://restaurantenoi.com/regala-experiencia-noi/" target="_blank" rel="noopener">Regala</a>
+      <a class="link-line" href="mailto:info@restaurantenoi.com?subject=Lavora%20con%20Noi">Lavora con Noi</a>
+    </nav>
+    <div class="footer__legal label">
+      <span>© 2026 NOI</span>
+      <ul>
+        <li><a class="link-line" href="#">Aviso legal</a></li>
+        <li><a class="link-line" href="#">Privacidad</a></li>
+        <li><a class="link-line" href="#">Cookies</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <dialog class="reserve-modal" data-reserve-modal aria-labelledby="reserve-modal-title">
+    <div class="reserve-modal__head">
+      <p class="reserve-modal__title" id="reserve-modal-title">Reservar en NOI</p>
+      <button class="reserve-modal__close" type="button" data-reserve-close aria-label="Cerrar reservas">×</button>
+    </div>
+    <div class="reserve-modal__tabs" role="tablist" aria-label="Elige sala">
+      <button class="reserve-tab" type="button" role="tab" aria-selected="false" data-sala="ristorante" data-url="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150509">
+        <span class="label">Sala verde</span><strong>NOI Ristorante</strong>
+      </button>
+      <button class="reserve-tab" type="button" role="tab" aria-selected="false" data-sala="bar" data-url="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150506">
+        <span class="label">La barra</span><strong>NOI Bar e Cucina</strong>
+      </button>
+    </div>
+    <div class="reserve-modal__body">
+      <p class="reserve-modal__choose" data-reserve-choose>Elige la sala para ver la disponibilidad.</p>
+      <iframe class="reserve-modal__frame" title="Reserva en CoverManager" data-reserve-frame hidden></iframe>
+    </div>
+    <div class="reserve-modal__foot">
+      <span>¿Grupos o eventos? <a href="tel:+34910694007">910 694 007</a></span>
+      <a href="#" target="_blank" rel="noopener" data-reserve-external hidden>Abrir en una pestaña nueva ↗</a>
+    </div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="assets/js/core.js" defer></script>
+  <script src="assets/js/widgets.js" defer></script>
+
+</body>
+</html>
