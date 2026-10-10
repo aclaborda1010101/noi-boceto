@@ -17,19 +17,15 @@
   {{> defs}}
   {{> topbar}}
 
-  <main class="home solo" id="contenido" data-home data-set="verde">
-    <div class="slides home__stage" data-stage data-interval="6200" aria-hidden="true">
+  <main class="home solo" id="contenido" data-header-trigger data-home data-set="verde">
+    <div class="slides home__stage" data-stage aria-hidden="true">
       {{img noi-web-03 | | 100vw | class="is-active" data-caption="Sala verde" loading="eager" fetchpriority="high"}}
-      {{img noi-oct26-01 | | 100vw | data-caption="La mesa"}}
-      {{img noi-oct26-22 | | 100vw | data-caption="La mesa"}}
-      {{img noi-web-15 | | 100vw | data-caption="Sala verde"}}
     </div>
     <div class="home__tint" aria-hidden="true"></div>
 
     <div class="home__inner solo__inner">
       <p class="label solo__eyebrow">Sala verde · Alta cocina italiana</p>
       <h1 class="solo__title"><small>NOI</small>Ristorante</h1>
-      <p class="solo__text">La expresión más creativa y gastronómica de NOI. Una cocina italiana contemporánea, donde la tradición se encuentra con la innovación, la técnica y la sorpresa, sin formalidades innecesarias.</p>
       <ul class="home__awards" aria-label="Reconocimientos">
         <li><span class="home__award-name"><em>Guía Michelin</em></span><span>2026</span></li>
         <li class="home__awards-rule" aria-hidden="true"></li>
@@ -42,10 +38,42 @@
     </div>
 
     <div class="home__caption label">
-      <span><span data-stage-caption aria-hidden="true">Sala verde</span> · <span data-stage-index>01</span> / <span data-stage-total>04</span></span>
+      <span>Sala verde</span>
+      <a class="scroll-cue solo__scroll" href="#experiencia">Descubrir</a>
       <a class="solo__next link-line" href="bar-e-cucina.html">NOI Bar e Cucina <svg aria-hidden="true"><use href="#arrow"/></svg></a>
     </div>
   </main>
+
+  <div class="solo-more">
+    <section class="sala-intro" id="experiencia" aria-labelledby="intro-title">
+      <p class="label reveal" style="color: var(--accent)">La experiencia</p>
+      <h2 class="sala-intro__text reveal" id="intro-title" data-delay="1">La expresión más <em>creativa y gastronómica</em> de NOI.</h2>
+      <p class="reveal" data-delay="2" style="max-width: 40rem; color: var(--fg-soft)">Una cocina italiana contemporánea, donde la tradición se encuentra con la innovación, la técnica y la sorpresa. Una experiencia sofisticada, pero cercana, que celebra el producto, la creatividad y el placer de disfrutar de la alta cocina sin formalidades innecesarias.</p>
+    </section>
+
+    <!-- Fotos de la sala verde que se cortan al hacer scroll -->
+    <section class="cuts" data-cuts aria-label="La sala verde">
+      <div class="cuts__sticky">
+        <figure class="cut" data-label="La mesa">{{img noi-oct26-01 | Mesa redonda vestida de blanco en la sala verde | 100vw}}</figure>
+        <figure class="cut" data-cut="center-v" data-label="Sala verde">{{img noi-web-15 | Mesa junto a la pared verde con su lámpara | 100vw}}</figure>
+        <figure class="cut" data-cut="bottom" data-label="El servicio">{{img noi-oct26-22 | Copas y servicio sobre mantel blanco | 100vw}}</figure>
+        <div class="cuts__caption label">
+          <span><span data-cuts-index>01</span> / 03</span>
+          <span class="cuts__progress" aria-hidden="true"><span data-cuts-bar></span></span>
+          <span data-cuts-label>La mesa</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="solo-cta" aria-label="Reservar en NOI Ristorante">
+      <h2 class="solo-cta__title reveal">Reserva en <em>NOI Ristorante</em></h2>
+      <div class="solo__actions reveal" data-delay="1">
+        <a class="btn btn--solid" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150509" target="_blank" rel="noopener" data-reserve="ristorante"><span>Reservar mesa</span></a>
+        <a class="btn" href="#menu-degustacion" data-sheet-open="menu-degustacion"><span>Menú degustación</span></a>
+      </div>
+    </section>
+  </div>
+
 
   <dialog class="sheet sheet--note" id="menu-degustacion" aria-labelledby="menu-degustacion-title">
     <div class="sheet__head">
@@ -61,6 +89,7 @@
     </div>
   </dialog>
 
+  {{> footer}}
   {{> modal}}
 </body>
 </html>

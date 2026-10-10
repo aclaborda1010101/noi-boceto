@@ -206,12 +206,35 @@ body:has(> .home) { background: #1b1110; }
 body.theme-verde:has(> .home) { background: #161a0e; }
 body.theme-rosso:has(> .home) { background: #2a0a0c; }
 
-/* Propuesta 2: en móvil, iconos en dos filas (3 + 3), más grandes y legibles */
+/* Propuesta 2: sin el icono de Reservar; 5 iconos centrados (3 arriba + 2 abajo en móvil) */
+.icons-2rows .icon-link--reserve { display: none; }
+.icons-2rows .icons { display: flex; flex-wrap: wrap; justify-content: center; }
+.icons-2rows .icon-link { width: 7.5rem; }
 @media (max-width: 640px) {
-  .icons-2rows .icons { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem 0.4rem; max-width: 21rem; }
-  .icons-2rows .icon-link { gap: 0.55rem; }
+  .icons-2rows .icons { gap: 1.2rem 0; max-width: 22rem; }
+  .icons-2rows .icon-link { width: 33.333%; gap: 0.55rem; }
   .icons-2rows .icon-link svg { width: 2.05rem; }
   .icons-2rows .icon-link span { font-size: 0.82rem; white-space: nowrap; }
   .icons-2rows.page-home .home__inner { gap: clamp(2.4rem, 7vh, 5rem); padding-top: 3rem; }
   .icons-2rows.page-home .noi-logo--xl { width: 12.5rem; }
 }
+}
+
+/* ---------- Ristorante / Bar e Cucina (sencilla): un poco más al hacer scroll ---------- */
+.solo .home__caption { align-items: flex-end; }
+.solo__scroll {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  font-family: var(--font-sans); font-size: var(--text-label); font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgb(243 235 220 / 85%);
+}
+.solo__scroll::after { height: 1.8rem; }
+.solo-more { position: relative; z-index: 1; background: var(--bg); color: var(--fg); }
+.solo-cta {
+  padding: var(--space-section) var(--gutter);
+  display: grid; justify-items: center; gap: 2rem;
+  text-align: center;
+}
+.solo-cta__title { font-size: var(--text-h2); font-weight: 300; line-height: 0.95; }
+.solo-cta__title em { font-style: italic; color: var(--accent); }
+@media (max-width: 640px) { .solo .home__caption > span:first-child { display: none; } }

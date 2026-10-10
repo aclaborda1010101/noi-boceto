@@ -18,11 +18,10 @@
   {{> defs}}
   {{> topbar}}
 
-  <main class="home solo" id="contenido" data-home data-set="rosso">
+  <main class="home solo" id="contenido" data-header-trigger data-home data-set="rosso">
     <div class="slides home__stage" data-stage data-interval="6200" aria-hidden="true">
       {{img noi-web-05 | | 100vw | class="is-active" data-caption="La barra" loading="eager" fetchpriority="high"}}
       {{img noi-web-08 | | 100vw | data-caption="Sala roja"}}
-      {{img noi-web-11 | | 100vw | data-caption="Il bancone"}}
       {{img noi-oct26-20 | | 100vw | data-caption="La bodega"}}
     </div>
     <div class="home__tint" aria-hidden="true"></div>
@@ -30,7 +29,6 @@
     <div class="home__inner solo__inner">
       <p class="label solo__eyebrow">La barra · Cocina de siempre</p>
       <h1 class="solo__title"><small>NOI</small>Bar e <em>Cucina</em></h1>
-      <p class="solo__text">El lado más espontáneo del chef Gianni Pinto. Una cocina italiana auténtica, generosa y sin artificios, donde las recetas de siempre cobran vida. Para compartir, sin prisas, como en casa.</p>
       <div class="solo__actions">
         <a class="btn btn--solid" href="assets/docs/carta-noi-bar-e-cucina.pdf" target="_blank" rel="noopener" data-sheet-open="carta"><span>Ver la carta</span></a>
         <a class="btn" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150506" target="_blank" rel="noopener" data-reserve="bar"><span>Reservar mesa</span></a>
@@ -38,10 +36,48 @@
     </div>
 
     <div class="home__caption label">
-      <span><span data-stage-caption aria-hidden="true">La barra</span> · <span data-stage-index>01</span> / <span data-stage-total>04</span></span>
+      <span><span data-stage-caption aria-hidden="true">La barra</span> · <span data-stage-index>01</span> / <span data-stage-total>03</span></span>
+      <a class="scroll-cue solo__scroll" href="#experiencia">Descubrir</a>
       <a class="solo__next link-line" href="ristorante.html">NOI Ristorante <svg aria-hidden="true"><use href="#arrow"/></svg></a>
     </div>
   </main>
+
+  <div class="solo-more">
+    <section class="sala-intro" id="experiencia" aria-labelledby="intro-title">
+      <p class="label reveal" style="color: var(--accent)">Cocina de siempre</p>
+      <h2 class="sala-intro__text reveal" id="intro-title" data-delay="1">El lado más <em>espontáneo</em> del chef Gianni Pinto.</h2>
+      <p class="reveal" data-delay="2" style="max-width: 40rem; color: var(--fg-soft)">Una cocina italiana auténtica, generosa y sin artificios, donde las recetas de siempre cobran vida a través de un producto extraordinario. Un espacio para compartir, disfrutar sin prisas y sentirse como en casa.</p>
+    </section>
+
+    <!-- Fotos de la barra y la sala roja que se cortan al hacer scroll -->
+    <section class="cuts" data-cuts aria-label="La barra y la sala roja">
+      <div class="cuts__sticky">
+        <figure class="cut" data-label="Il bancone">{{img noi-web-11 | Servicio sobre la barra de mármol | 100vw}}</figure>
+        <figure class="cut cut--pair" data-cut="center-v" data-label="Sala roja">
+          {{img noi-oct26-12 | Mesa bajo el espejo de luz en arco | (min-width: 800px) 50vw, 100vw}}
+          {{img noi-web-16 | Mesas de mármol en la sala roja | 50vw}}
+        </figure>
+        <figure class="cut cut--pair" data-cut="bottom" data-label="Luces">
+          {{img noi-oct26-23 | Lámparas rojas y latón | (min-width: 800px) 50vw, 100vw}}
+          {{img noi-oct26-14 | Lámpara de cristal martillado | 50vw}}
+        </figure>
+        <div class="cuts__caption label">
+          <span><span data-cuts-index>01</span> / 03</span>
+          <span class="cuts__progress" aria-hidden="true"><span data-cuts-bar></span></span>
+          <span data-cuts-label>Il bancone</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="solo-cta" aria-label="Reservar en NOI Bar e Cucina">
+      <h2 class="solo-cta__title reveal">Reserva en <em>NOI Bar e Cucina</em></h2>
+      <div class="solo__actions reveal" data-delay="1">
+        <a class="btn btn--solid" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-noi/spanish?id_zone=150506" target="_blank" rel="noopener" data-reserve="bar"><span>Reservar mesa</span></a>
+        <a class="btn" href="assets/docs/carta-noi-bar-e-cucina.pdf" target="_blank" rel="noopener" data-sheet-open="carta"><span>Ver la carta</span></a>
+      </div>
+    </section>
+  </div>
+
 
   <dialog class="sheet" id="carta" aria-label="Carta de NOI Bar e Cucina">
     <div class="sheet__head">
@@ -55,6 +91,7 @@
     </div>
   </dialog>
 
+  {{> footer}}
   {{> modal}}
 </body>
 </html>
