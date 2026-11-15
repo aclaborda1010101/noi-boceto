@@ -24,13 +24,13 @@ Ninguno. El repo se conserva tal como está (ver «Bloqueos»).
 - 2026-10-09 — Tres propuestas en vez de dos: sencilla, sencilla en dos filas y editorial (commit `95e353d`) — motivo: no consta.
 - 2026-10-10 — La propuesta 2 va sin botón Reservar, con los iconos en 3+2; Ristorante y Bar sencillas pasan a tener scroll con texto, fotos y reserva (commit `d0e00ed`) — motivo: no consta.
 - 2026-11-15 — Se añade el mini cerebro: `AGENTS.md`, `CLAUDE.md` y `ESTADO.md` — para que cualquier agente o persona retome el repo sin depender de un chat.
-- 2026-11-15 — Desde hoy se trabaja en rama y PR, como en el resto de proyectos — hasta hoy los 14 commits fueron directos a `main`, y `main` es lo que se publica.
+- 2026-11-15 — Desde hoy se trabaja en rama y PR, como pide la plantilla de proyectos (`MANIAS-DEV/plantilla-proyecto`) — hasta hoy los 14 commits fueron directos a `main`, y `main` es lo que se publica.
 - 2026-11-15 — El repo se conserva — porque aún no hay acceso al alojamiento del cliente para publicar la web. Es un dato del encargo de hoy: no estaba escrito en el repo.
 
 ## Rama y PR en curso
 
 - Rama `claude/mini-cerebro`, con el PR «Mini cerebro: AGENTS, CLAUDE y ESTADO con tope». Solo documentación; no toca código.
-- No hay más ramas ni más PRs: en GitHub solo existe `main` (comprobado el 15/11/2026).
+- No hay más ramas ni más PRs: en GitHub solo existen `main` y esta rama, y este PR es el único (comprobado el 15/11/2026).
 
 ## Pruebas
 
@@ -51,7 +51,7 @@ Ninguno. El repo se conserva tal como está (ver «Bloqueos»).
 
 ## Siguiente acción
 
-Conseguir el acceso al alojamiento del cliente. Hasta entonces no hay trabajo de código previsto. Quién lo pide y a quién: no consta.
+Conseguir el acceso al alojamiento del cliente. Trabajo de código previsto hasta entonces: no consta. Quién lo pide y a quién: no consta.
 
 ## Piezas reutilizables
 

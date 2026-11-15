@@ -20,7 +20,7 @@ Lo leen Claude Code (a través de `CLAUDE.md`), Codex y cualquier otro agente. V
 
 ## Arrancar y probar
 
-- **Generar las páginas:** `node build.mjs`. Es la única orden del proyecto y está en la cabecera de `build.mjs`. Solo usa módulos propios de Node: no hay `package.json` ni nada que instalar. Qué versión de Node hace falta, no consta.
+- **Generar las páginas:** `node build.mjs`. Es la única orden del proyecto y está en la cabecera de `build.mjs`. Esa cabecera dice que genera tres páginas, pero el código genera las 11 de `src/pages/`. Solo usa módulos propios de Node: no hay `package.json` ni nada que instalar. Qué versión de Node hace falta, no consta.
 - **Qué hace:** lee cada `src/pages/*.html`, le mete los parciales de `src/partials/` y escribe el resultado en la raíz. Si falta una variable, un parcial o una foto, se para con un error.
 - **Verlo en local:** lo generado son HTML sueltos en la raíz, con rutas relativas a `assets/`. No consta ninguna orden para servirlos.
 - **Pruebas automáticas:** no hay. Tampoco CI. Lo único que se puede comprobar es generar y mirar las páginas en el navegador.
@@ -62,7 +62,7 @@ Lo leen Claude Code (a través de `CLAUDE.md`), Codex y cualquier otro agente. V
 
 ## Lo que no se toca salvo que una persona lo pida en la conversación
 
-- Las direcciones de CoverManager de cada sala (`src/partials/modal.html` y varias páginas de `src/pages/`) y los datos de contacto del restaurante (`src/partials/footer.html`, `src/partials/header.html`).
+- Las direcciones de CoverManager de cada sala (`src/partials/modal.html` y cinco páginas de `src/pages/`) y los datos de contacto del restaurante: teléfono, correo y dirección. Están repetidos en cuatro parciales (`footer`, `header`, `home-sencilla` y `modal`) y en `src/pages/`: la dirección sale en las 11 páginas. Búscalos en todo `src/` antes de dar un cambio por hecho.
 - El `noindex, nofollow` y cualquier cosa de publicación: ajustes de GitHub Pages, dominio, alojamiento.
 - Dependencias nuevas: hoy no hay ninguna. Si algo pide instalar un paquete, propónlo en el PR con el motivo.
 - Secretos: este repo no los necesita. Si aparece alguno, no lo subas y avisa.
