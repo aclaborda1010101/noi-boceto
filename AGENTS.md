@@ -81,8 +81,8 @@ Topes: `AGENTS.md` 150 líneas, `CLAUDE.md` 10 y `ESTADO.md` 100. Lo que no quep
 
 ## Cerebro general
 
-El conocimiento comun de ManIAS vive en Lince: repo `MANIAS-DEV/interno-oportunidades`.
+El conocimiento común de ManIAS vive en Lince: repo `MANIAS-DEV/interno-oportunidades`.
 
-- Antes de disenar algo nuevo, mira si ya esta hecho: `INDICE.md` de Lince, luego la ficha que encaje, luego el repo y la ruta que indique.
-- La lista de proyectos y de sus mini cerebros esta en `CEREBROS.md` de Lince.
-- Desde este proyecto no se escribe en Lince. Lo que aprendas aqui va a `ESTADO.md` de este repo; Lince lo recoge en su ronda.
+- Antes de diseñar algo nuevo, mira si ya está hecho: `INDICE.md` de Lince, luego la ficha que encaje, luego el repo y la ruta que indique.
+- La lista de proyectos y de sus mini cerebros está en `CEREBROS.md` de Lince.
+- Desde este proyecto no se escribe en Lince. Lo que aprendas aquí va a `ESTADO.md` de este repo; Lince lo recoge en su ronda.
